@@ -6,7 +6,7 @@ zju Software engineering 2014 spring A
 
 每个小组自己建个文件夹存放自己小组的东西。
 
-@NOTE: 用thinkPHP框架的小组照着tms.php改写一下，定义一下自己的入口文件，只用修改名称和路径，然后把这个php文件存成名称.php就好了
+@NOTE: 用thinkPHP框架的小组照着tms.php改写一下，定义一下自己的入口文件，只用修改名称和路径，然后把这个php文件存成名称.php就好了。
        不用thinkPHP框架的小组也新建一个文件夹村自己的东西，不要弄乱了。
 <?php
 define('APP_NAME','tms');     //名称
