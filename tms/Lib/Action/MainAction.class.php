@@ -11,7 +11,7 @@ class MainAction extends BaseAction
     public function index()
     {
     	
-//     	$re = $this->checkAuth($this->uid,array("action"=>"look","sid"=>"1"));
+    	$re = $this->checkAuth($this->uid,array("action"=>"look","sid"=>"1"));
     }
     
 }
