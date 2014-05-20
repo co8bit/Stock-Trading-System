@@ -36,4 +36,6 @@ create table a6_user_auth(
 	foreign key(sid) references a6_stock_info(sid) on delete cascade on update cascade,
 	primary key(uid,sid)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
+insert a6_user_auth values(1,1);
+insert a6_user_auth values(1,2);
 insert a6_user_auth values(2,1);
