@@ -1,0 +1,15 @@
+<include file="Public:noHeader" />
+</head>
+
+<body class="metro">
+
+    <div class="container">
+    		<h1>
+	           	 可管理股票列表<small>当前账户：{$Think.session.userName}</small>
+	           	 <span style="float:right;"><button class="btn btn-primary" onclick="window.location='{:U("Index/logout")}';">退出</button></span>
+        	</h1>
+			<iframe name="theIframe"  id="theIframe" src="{:U('Main/indexIframe')}" width="100%"  height="700" frameborder="0"  scrolling="auto"></iframe>
+    </div>
+	<include file="Public:NoFooter" />
+</body>
+</html>

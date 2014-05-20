@@ -1,0 +1,40 @@
+<include file="Public:noHeader" />
+</head>
+
+<body class="metro">
+
+    <div class="container">
+			<if condition="$stockList eq NULL "><b>可管理股票为空</b>
+   			<else/>
+		            <table class="table hovered">
+		                <thead>
+			                <tr>
+			                	<th>股票编号</th>
+			                	<th>股票名称</th>
+			                	<th>最新成交价格</th>
+			                	<th>最新成交数量</th>
+			                	<th>股票状态</th>
+			                	<th>操作</th>
+			                </tr>
+		                </thead>
+						
+		                <tbody>
+		                	<volist name="stockList" id="vo">
+						    	<tr>
+						    		<td class="span2">{$vo.sid}</td>
+						    		<td class="span3">{$vo.stockName}</td>
+						    		<td class="span3">{$vo.price}</td>
+						    		<td class="span3">{$vo.num}</td>
+						    		<td class="span2">{$vo.status}</td>
+									<td style="width: 70px;">
+										<div onclick="window.parent.location='{:U("Main/manage")}?sid={$vo.sid}';" class="btn btn-primary">管理</div>
+									</td>
+						    	</tr>
+					    	</volist>
+		                </tbody>
+		            </table>
+			</if>
+    </div>
+	<include file="Public:NoFooter" />
+</body>
+</html>
