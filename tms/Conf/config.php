@@ -13,5 +13,7 @@ return array(
 	'DB_PREFIX' => 'a6_', // 数据库表前缀
 	
 	'SESSION_AUTO_START'    => true,    // 是否自动开启Session
+	
+	'TMPL_PARSE_STRING'=> array('__PUBLIC__' => '/tms/Public'),//定义__PUBLIC__在哪里
 );
 ?>
