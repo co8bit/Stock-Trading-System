@@ -16,7 +16,7 @@ zju Software engineering 2014 spring A
 	</h2>
 </h3>
 
-访问规则是：域名/入口文件名称.php/模块名/操作名/……
+<P>6.访问规则是：域名/入口文件名称.php/模块名/操作名/……
 
 
 
