@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<FORM method="post" action="__URL__/read">
+    ID:   <INPUT type="text" name="id" value="{$id}"><br/>
+    <INPUT type="submit" value="提交">
+</FORM>
+<table>
+<tr>
+    <td>id:</td>
+    <td>{$data.id}</td>
+</tr>
+<tr>
+    <td>标题：</td>
+    <td>{$data.title}</td>
+</tr>
+<tr>
+    <td>内容：</td>
+    <td>{$data.content}</td>
+</tr>
+</table>

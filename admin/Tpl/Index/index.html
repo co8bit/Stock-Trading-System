@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+<html>
+ <head>
+   <title>Select Data</title>
+ </head>
+ <body>
+    <volist name="data" id="vo">
+        {$vo.sid}--{$vo.stockName}  <a href="http://localhost:5191/admin.php/Form/delete/sid/{$vo.sid}">删除</a><br/>
+    </volist>
+     <p><a href="http://localhost:5191/admin.php/Form/add">添加</a></p>
+    <p><a href="http://localhost:5191/admin.php/Form/edit">权限管理</a></p>
+ </body>
+ 
+</html>
