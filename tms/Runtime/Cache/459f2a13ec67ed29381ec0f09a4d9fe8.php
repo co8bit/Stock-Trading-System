@@ -63,7 +63,9 @@
 						    		<td class="span3"><?php echo ($vo["stockName"]); ?></td>
 						    		<td class="span3"><?php echo ($vo["price"]); ?></td>
 						    		<td class="span3"><?php echo ($vo["num"]); ?></td>
-						    		<td class="span2"><?php echo ($vo["status"]); ?></td>
+						    		<?php if($vo["status"] == 1): ?><td class="span2">正常</td>
+						    		<?php else: ?>
+						    			<td class="span2">暂停</td><?php endif; ?>
 									<td style="width: 70px;">
 										<div onclick="window.parent.location='<?php echo U("Main/manage");?>?sid=<?php echo ($vo["sid"]); ?>';" class="btn btn-primary">管理</div>
 									</td>

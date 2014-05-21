@@ -43,6 +43,21 @@
 <body class="metro">
 
     <div class="container">
+    				<p>
+		        	<p>
+		        	
+			        	<table>
+			        		<tr>
+			        			<td class="span5"><h2>最新成交价格：<?php echo ($stockInfo["price"]); ?></h2></td>
+			        			<td class="span5"><h2>最新成交数量：<?php echo ($stockInfo["num"]); ?></h2></td>
+			        			<td class="span3"><h2>状态：
+			        				<?php if($stockInfo["status"] == 1): ?>正常
+						    		<?php else: ?>
+						    			暂停<?php endif; ?>
+						    		</h2>
+								</td>
+			        		</tr>
+			        	</table>
 		            <table class="table hovered">
 		                <thead>
 			                <tr>
@@ -59,7 +74,9 @@
    							<?php else: ?>
 			                	<?php if(is_array($instructList)): $i = 0; $__LIST__ = $instructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
 							    		<td style="width: 50px;"><?php echo ($i); ?></td>
-							    		<td class="span4"><?php echo ($vo["ty"]); ?></td>
+							    		<?php if($vo["ty"] == 0): ?><td class="span4">卖指令</td>
+							    		<?php else: ?>
+							    			<td class="span4">买指令</td><?php endif; ?>
 							    		<td class="span4"><?php echo ($vo["price"]); ?></td>
 							    		<td class="span4"><?php echo ($vo["num"]); ?></td>
 							    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>

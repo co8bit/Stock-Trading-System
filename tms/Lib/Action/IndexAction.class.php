@@ -19,6 +19,8 @@ class IndexAction extends Action
     		D("User")->init($this->_post('userName'));
     		if ( $result = D("User")->login($this->_post('userPassword')) )
     		{
+    			empty($result["status"]) && $this->error("账户被锁定，不能登录");
+    			
     			//设置session
     			session('userName',$result['userName']);
     			session("uid",$result["uid"]);

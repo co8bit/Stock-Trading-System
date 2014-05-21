@@ -9,6 +9,11 @@
 	           	 <span style="float:right;"><button class="btn btn-primary" onclick="window.location='{:U("Index/logout")}';">退出</button></span>
         	</h1>
         	<iframe name="theIframe"  id="theIframe" src="{:U('Main/manageIframe')}?sid={$sid}" width="100%"  height="700" frameborder="0"  scrolling="auto"></iframe>
+        	<if condition="$stockInfo.status eq 1">
+    			<a class="btn btn-large  btn-primary" href="{:U('Main/pause')}?sid={$sid}">暂停</a>
+    		<else/>
+    			<a class="btn btn-large btn-primary" href="{:U('Main/restart')}?sid={$sid}">重启</a>
+    		</if>
     </div>
 	<include file="Public:NoFooter" />
 </body>

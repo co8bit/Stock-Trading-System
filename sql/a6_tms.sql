@@ -13,19 +13,21 @@ create table a6_user(
 	userName varchar(100) NOT NULL,
 	userPassword varchar(100) NOT NULL,
 	auth varchar(100) NOT NULL,
+	status int NOT NULL,
 
 	primary key(uid)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
-insert a6_user values(null,"tms","tms","root");
-insert a6_user values(null,"tmsg","tmsg","pt");
+insert a6_user values(null,"tms","tms","root",1);
+insert a6_user values(null,"tmsg","tmsg","pt",1);
+insert a6_user values(null,"tmss","tmss","pt",0);
 
 
 create table a6_stock_info(
 	sid bigint NOT NULL AUTO_INCREMENT,
 	stockName varchar(100) NOT NULL,
-	status int NOT NULL,
-	price double NOT NULL,
-	num int NOT NULL,
+	status int NOT NULL,/*股票状态*/
+	price double NOT NULL,/*最新成交价格*/
+	num int NOT NULL,/*最新成交数量*/
 	primary key(sid)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
 insert a6_stock_info values(null,"新浪科技",1,12,2);

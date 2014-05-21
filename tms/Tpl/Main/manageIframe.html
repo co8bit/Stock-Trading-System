@@ -4,6 +4,23 @@
 <body class="metro">
 
     <div class="container">
+    				<p>
+		        	<p>
+		        	
+			        	<table>
+			        		<tr>
+			        			<td class="span5"><h2>最新成交价格：{$stockInfo.price}</h2></td>
+			        			<td class="span5"><h2>最新成交数量：{$stockInfo.num}</h2></td>
+			        			<td class="span3"><h2>状态：
+			        				<if condition="$stockInfo.status eq 1">
+						    			正常
+						    		<else/>
+						    			暂停
+						    		</if>
+						    		</h2>
+								</td>
+			        		</tr>
+			        	</table>
 		            <table class="table hovered">
 		                <thead>
 			                <tr>
@@ -21,7 +38,11 @@
 			                	<volist name="instructList" id="vo">
 							    	<tr>
 							    		<td style="width: 50px;">{$i}</td>
-							    		<td class="span4">{$vo.ty}</td>
+							    		<if condition="$vo.ty eq 0">
+							    			<td class="span4">卖指令</td>
+							    		<else/>
+							    			<td class="span4">买指令</td>
+							    		</if>
 							    		<td class="span4">{$vo.price}</td>
 							    		<td class="span4">{$vo.num}</td>
 							    		<td class="span4">{$vo.createTime}</td>

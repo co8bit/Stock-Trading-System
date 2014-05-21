@@ -25,7 +25,11 @@
 						    		<td class="span3">{$vo.stockName}</td>
 						    		<td class="span3">{$vo.price}</td>
 						    		<td class="span3">{$vo.num}</td>
-						    		<td class="span2">{$vo.status}</td>
+						    		<if condition="$vo.status eq 1">
+						    			<td class="span2">正常</td>
+						    		<else/>
+						    			<td class="span2">暂停</td>
+						    		</if>
 									<td style="width: 70px;">
 										<div onclick="window.parent.location='{:U("Main/manage")}?sid={$vo.sid}';" class="btn btn-primary">管理</div>
 									</td>

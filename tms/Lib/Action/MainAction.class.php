@@ -15,7 +15,9 @@ class MainAction extends BaseAction
     
     public function manage()
     {
-    	$this->assign("sid",$this->_get("sid"));
+    	$sid		=		$this->_get("sid");
+    	$this->assign("sid",$sid);
+    	$this->assign("stockInfo",D("StockInfo")->getStockInfo($sid));
     	$this->display();
     }
     
@@ -29,10 +31,37 @@ class MainAction extends BaseAction
     public function manageIframe()
     {
     	$sid		=		$this->_get("sid");
-    	$instructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid))->order('createTime desc')->join(' a6_stock_info ON  a4_instruct.sid = a6_stock_info.sid')->select();
+    	$instructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid))->order('createTime desc')->select();
+//     	dump($instructList);
+    	$this->assign("stockInfo",D("StockInfo")->getStockInfo($sid));
     	$this->assign("instructList",$instructList);
     	$this->assign("sotckName",$instructList[0]["sotckName"]);
     	$this->display();
+    }
+    
+    
+    /**
+     * 暂停某个股票
+     */
+    public function pause()
+    {
+    	$sid		=		$this->_get("sid");
+    	if (D("StockInfo")->setPause($sid))
+    		$this->success("暂停成功");
+    	else
+    		$this->error("暂停失败，请重试");
+    }
+    
+    /**
+     * 重启某个股票
+     */
+    public function restart()
+    {
+    	$sid		=		$this->_get("sid");
+    	if (D("StockInfo")->setRestart($sid))
+    		$this->success("重启成功");
+    	else
+    		$this->error("重启失败，请重试");
     }
 }
 
