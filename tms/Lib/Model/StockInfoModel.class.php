@@ -43,5 +43,18 @@ class StockInfoModel extends Model {
 		else
 			return true;
 	}
+	
+	/**
+	 * 添加股票
+	 * @param 		int uid;该操作的操作用户
+	 * 						string $stockName;
+	 * @return		bool;添加是否成功
+	 */
+	public function addStock($uid,$stockName)
+	{
+		$sid		=		$this->add(array("stockName"=>$stockName));
+		empty($sid) && $this->error("添加错误，请重试");
+		return D("UserAuth")->add(array("uid"=>$uid,"sid"=>$sid));
+	}
 }
 ?>

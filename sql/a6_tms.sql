@@ -32,8 +32,8 @@ create table a6_stock_info(
 	decLimit double NOT NULL,/*跌幅限制*/
 	primary key(sid)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
-insert a6_stock_info values(null,"新浪科技",1,12,2,0.05);
-insert a6_stock_info values(null,"国家电网",1,23,65,0.05);
+insert a6_stock_info values(null,"新浪科技",1,12,2,0.05,0.05);
+insert a6_stock_info values(null,"国家电网",1,23,65,0.05,0.05);
 
 
 create table a6_user_auth(

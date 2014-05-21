@@ -13,6 +13,7 @@ class BaseAction extends Action
         header("Content-Type:text/html; charset=utf-8");
         $tmpUid		=		session("uid");
         empty($tmpUid) && $this->error("非法操作，请登录",U("Index/login"));
+        
         $this->uid = $tmpUid;
     }
     
@@ -43,7 +44,7 @@ class BaseAction extends Action
     	}
     	elseif ($action == "isRoot")
     	{
-    		if ($session("auth") == "root")
+    		if (session("auth") == "root")
     			return true;
     		else
     			return false;

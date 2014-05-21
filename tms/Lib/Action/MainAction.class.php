@@ -16,6 +16,8 @@ class MainAction extends BaseAction
     public function manage()
     {
     	$sid		=		$this->_get("sid");
+    	empty($sid) && $this->error("非法操作",U("Main/index"));
+    	
     	$this->assign("sid",$sid);
     	$this->assign("stockInfo",D("StockInfo")->getStockInfo($sid));
     	$this->display();
@@ -31,6 +33,8 @@ class MainAction extends BaseAction
     public function manageIframe()
     {
     	$sid		=		$this->_get("sid");
+    	empty($sid) && $this->error("非法操作",U("Main/index"));
+    	
     	$buyInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>1))->order('price desc,createTime desc,num desc')->select();
     	$sellInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>0))->order('price asc,createTime desc,num desc')->select();
 //     	dump($instructList);
@@ -48,6 +52,8 @@ class MainAction extends BaseAction
     public function pause()
     {
     	$sid		=		$this->_get("sid");
+    	empty($sid) && $this->error("非法操作",U("Main/index"));
+    	
     	if (D("StockInfo")->setPause($sid))
     		$this->success("暂停成功");
     	else
@@ -60,6 +66,8 @@ class MainAction extends BaseAction
     public function restart()
     {
     	$sid		=		$this->_get("sid");
+    	empty($sid) && $this->error("非法操作",U("Main/index"));
+    	
     	if (D("StockInfo")->setRestart($sid))
     		$this->success("重启成功");
     	else
@@ -74,6 +82,7 @@ class MainAction extends BaseAction
     	$sid				=		$this->_post("sid");
     	$incLimit		=		$this->_post("incLimit");
     	$decLimit		=		$this->_post("decLimit");
+    	empty($sid) && $this->error("非法操作",U("Main/index"));
     	empty($incLimit) && $this->error("错误：涨幅为空");
     	empty($decLimit) && $this->error("错误：跌幅为空");
     	
@@ -83,6 +92,44 @@ class MainAction extends BaseAction
     		$this->success("涨跌幅设置成功");
 //     	$this->display("Index/login");
     }
+    
+    /**
+     * 股票基础信息管理页面
+     */
+    public function stockBaseManage()
+    {
+    	if (IS_POST)
+    	{
+    		$stockName		=		$this->_post("stockName");
+    		empty($stockName) && $this->error("错误：股票名称为空");
+    		
+    		if (D("StockInfo")->addStock(session("uid"),$stockName))
+    			$this->success("添加股票成功");
+    		else
+    			$this->error("添加股票失败，请重试");
+    	}
+    	else
+    	{
+    		$stockList		=		D("StockInfo")->select();
+    		$this->assign("stockList",$stockList);
+    		$this->display();
+    	}
+    }
+    
+    /*
+     * 删除某个股票的操作
+     */
+    public function deleteStock()
+    {
+    	$sid		=		$this->_get("sid");
+    	empty($sid) && $this->error("非法操作",U("Main/index"));
+    	
+    	if (D("StockInfo")->where(array("sid"=>$sid))->delete())
+    		$this->success("删除成功");
+    	else
+    		$this->error("删除失败，请重试");
+    }
+    
 }
 
 ?>

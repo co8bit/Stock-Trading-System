@@ -37,25 +37,29 @@
 
     </style>
 
-<style type="text/css">
-      body {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        background-color: #f5f5f5;
-      }
-</style>
 <body>
 
-    <div class="container">
+<div class="container">
+	<h1>
+      	 <a href="<?php echo U('Main/index');?>">主页</a>&nbsp;&nbsp;&nbsp;<small>当前账户：<?php echo (session('userName')); ?></small>
+      	 <span style="float:right;">
+      	 	<button class="btn btn-primary" onclick="window.location='<?php echo U("Index/logout");?>';">退出</button>
+      	 </span>
+  	</h1>
+		            
+  <form  method="post" action="<?php echo U('User/editPwd');?>" >
+  	<input type="hidden"  value="<?php echo ($toUid); ?>" name="toUid">
+  	<p>
+    用户名称：<span type="text" class="input-large uneditable-input" name="toUserName"><?php echo ($toUserName); ?></span>
+    <p>
+    输入密码：<input type="password" class="input-large"  name="userPassword">
+    <p>
+    确认密码：<input type="password" class="input-large"  name="userPassword2">
+    <p>
+    <button class="btn btn-primary" type="submit">修改</button>
+  </form>
 
-      <form class="form-signin" id="login" name="login" method="post" action="<?php echo U('Index/login');?>" >
-        <h2 class="form-signin-heading">登录</h2>
-        <input type="text" class="input-block-level" placeholder="用户名" name="userName">
-        <input type="password" class="input-block-level" placeholder="密码" name="userPassword">
-        <button class="btn btn-large btn-primary" type="submit">登录</button>
-      </form>
-
-    </div> <!-- /container --> 
+</div>
 
     <!-- Bootstrap -->    <script src="__PUBLIC__/tms/bootstrap/js/bootstrap.min.js"></script>
 

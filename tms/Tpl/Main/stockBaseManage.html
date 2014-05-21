@@ -1,0 +1,48 @@
+<include file="Public:NoHeader" />
+<body>
+
+<div class="container">
+	<h1>
+      	 <a href="{:U('Main/index')}">主页</a>&nbsp;&nbsp;&nbsp;股票列表<small>当前账户：{$Think.session.userName}</small>
+      	 <span style="float:right;">
+      	 	<button class="btn btn-primary" onclick="window.location='{:U("Index/logout")}';">退出</button>
+      	 </span>
+  	</h1>
+   
+   <table class="table table-hover table-striped">
+        <thead>
+         <tr>
+         	<th>序号</th>
+         	<th>股票名称</th>
+         	<th>股票编号</th>
+         	<th>操作</th>
+         </tr>
+       </thead>
+       <tbody>
+        	<if condition="$stockList eq NULL "><b>没有股票</b>
+			<else/>
+	         	<volist name="stockList" id="vo">
+	 				<tr>
+				 		<td class="span1">{$i}</td>
+				 		<td class="span4">{$vo.stockName}</td>
+				 		<td class="span4">{$vo.sid}</td>
+				 		<td class="span3"><a href="{:U('Main/deleteStock')}?sid={$vo.sid}" class="btn btn-primary">删除</a></td>
+				 	</tr>
+				</volist>
+			</if>
+       </tbody>
+   </table>
+		            
+		            
+  <form class="form-inline" method="post" action="{:U('Main/stockBaseManage')}" >
+    <input type="text" class="input-large" placeholder="股票名称" name="stockName">
+    <button class="btn btn-primary" type="submit">添加股票</button>
+  </form>
+
+</div>
+
+    <include file="Public:NoFooter" />
+
+</body>
+
+</html>

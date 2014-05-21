@@ -1,0 +1,30 @@
+<include file="Public:NoHeader" />
+<body>
+
+<div class="container">
+	<h1>
+      	 <a href="{:U('Main/index')}">主页</a>&nbsp;&nbsp;&nbsp;<small>当前账户：{$Think.session.userName}</small>
+      	 <span style="float:right;">
+      	 	<button class="btn btn-primary" onclick="window.location='{:U("Index/logout")}';">退出</button>
+      	 </span>
+  	</h1>
+		            
+  <form  method="post" action="{:U('User/editPwd')}" >
+  	<input type="hidden"  value="{$toUid}" name="toUid">
+  	<p>
+    用户名称：<span type="text" class="input-large uneditable-input" name="toUserName">{$toUserName}</span>
+    <p>
+    输入密码：<input type="password" class="input-large"  name="userPassword">
+    <p>
+    确认密码：<input type="password" class="input-large"  name="userPassword2">
+    <p>
+    <button class="btn btn-primary" type="submit">修改</button>
+  </form>
+
+</div>
+
+    <include file="Public:NoFooter" />
+
+</body>
+
+</html>

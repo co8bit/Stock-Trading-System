@@ -1,4 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit();?><head>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>股票交易系统</title>
 <!-- Bootstrap -->   <link href="__PUBLIC__/tms/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
@@ -38,12 +39,16 @@
 
 </head>
 
-<body class="metro">
+<body>
 
     <div class="container">
     		<h1>
 	           	 可管理股票列表<small>当前账户：<?php echo (session('userName')); ?></small>
-	           	 <span style="float:right;"><button class="btn btn-primary" onclick="window.location='<?php echo U("Index/logout");?>';">退出</button></span>
+	           	 <span style="float:right;">
+	           	 	<?php if($_SESSION['auth']== root): ?><a class="btn btn-primary" href="<?php echo U('Main/stockBaseManage');?>">管理股票基础信息</a><?php endif; ?>
+	           	 	<a class="btn btn-primary" href="<?php echo U('User/editPwd');?>">修改密码</a>
+	           	 	<button class="btn btn-primary" onclick="window.location='<?php echo U("Index/logout");?>';">退出</button>
+	           	 </span>
         	</h1>
 			<iframe name="theIframe"  id="theIframe" src="<?php echo U('Main/indexIframe');?>" width="100%"  height="700" frameborder="0"  scrolling="auto"></iframe>
     </div>

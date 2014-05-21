@@ -16,8 +16,12 @@ class IndexAction extends Action
     {
     	if (IS_POST)
     	{
-    		D("User")->init($this->_post('userName'));
-    		if ( $result = D("User")->login($this->_post('userPassword')) )
+    		$userName			=		$this->_post('userName');
+    		$userPassword		=		$this->_post('userPassword');
+    		empty($userName) && $this->error("错误：用户名不能为空");
+    		empty($userPassword) && $this->error("错误：密码不能为空");
+    		
+    		if ( $result = D("User")->login($userName,$userPassword) )
     		{
     			empty($result["active_status"]) && $this->error("账户被锁定，不能登录");
     			

@@ -1,13 +1,6 @@
 <?php
 class UserModel extends Model {
 
-	private $userName = "";
-	
-	public function init($userName)//传入userName
-	{
-		$this->userName = $userName;
-	}
-	
 	// 自动验证设置
 	protected $_validate = array(
 			array('userName', 'require', '用户名不能为空！'),
@@ -21,12 +14,13 @@ class UserModel extends Model {
 	
 	/**
 	 * 判断用户名和密码是否能登录
-	 * @param string $userPassword 用户密码
+	 * @param 	string $userName;用户名
+	 * 					string $userPassword 用户密码
 	 * @return 数据库返回的结果集，数组大小应为1。外面调用形如$re[0][]
 	 */
-	public function login($userPassword)
+	public function login($userName,$userPassword)
 	{
-		$condition['userName'] = $this->userName;
+		$condition['userName'] = $userName;
 		$condition['userPassword'] = $userPassword;
 		$tmp = $this->where($condition)->select();
 		if (!empty($tmp))
@@ -34,26 +28,6 @@ class UserModel extends Model {
 		else
 			return false;
 	}
-	
-	
-	
-	/**
-	 * 得到指定用户的用户信息
-	 * @param	string $name;用户名
-	* @return	array;
-	* 				查询成功返回用户所有字段的数组
-	* 				没查到返回null
-	* 				查询错误返回false
-	*/
-	public function getUserInfo($name)
-	{
-		$tmp = $this->where("userName=\"".$name."\"")->select();
-		if ( ($tmp === false) || ($tmp === null) )
-			return $tmp;
-		else
-			return $tmp[0];
-	}
-	
 	
 	
 	/**

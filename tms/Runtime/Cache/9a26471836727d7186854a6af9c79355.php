@@ -1,4 +1,5 @@
-<?php if (!defined('THINK_PATH')) exit();?><head>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>股票交易系统</title>
 <!-- Bootstrap -->   <link href="__PUBLIC__/tms/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
