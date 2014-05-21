@@ -51,6 +51,17 @@
 					    	</if>
 		                </tbody>
 		            </table>
+		            <form class="form-inline" method="post" action="{:U('Main/setStockLimit')}" >
+		    		 	<h3>涨幅：<input type="text" class="input-large"  value="{$stockInfo.incLimit}" name="incLimit">
+		    		 	跌幅：<input type="text" class="input-large"  value="{$stockInfo.decLimit}" name="decLimit">
+		    		 	<button class="btn btn-large btn-primary" type="submit">提交</button>
+		    		 	<if condition="$stockInfo.status eq 1">
+			    			<a class="btn btn-large  btn-primary" href="{:U('Main/pause')}?sid={$sid}">暂停</a>
+			    		<else/>
+			    			<a class="btn btn-large btn-primary" href="{:U('Main/restart')}?sid={$sid}">重启</a>
+			    		</if>
+		    		 	</h3>
+		    		 </form>
     </div>
 	<include file="Public:NoFooter" />
 </body>

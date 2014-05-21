@@ -40,17 +40,14 @@
 
 </head>
 
-<body class="metro">
+<body>
 
     <div class="container">
     		<h1>
-	           	 <?php echo ($stockName); ?><small>当前账户：<?php echo (session('userName')); ?></small>
+	           	 <a href="<?php echo U('Main/index');?>">主页</a>&nbsp;&nbsp;&nbsp;<?php echo ($stockInfo["stockName"]); ?><small>当前账户：<?php echo (session('userName')); ?></small>
 	           	 <span style="float:right;"><button class="btn btn-primary" onclick="window.location='<?php echo U("Index/logout");?>';">退出</button></span>
         	</h1>
         	<iframe name="theIframe"  id="theIframe" src="<?php echo U('Main/manageIframe');?>?sid=<?php echo ($sid); ?>" width="100%"  height="700" frameborder="0"  scrolling="auto"></iframe>
-        	<?php if($stockInfo["status"] == 1): ?><a class="btn btn-large  btn-primary" href="<?php echo U('Main/pause');?>?sid=<?php echo ($sid); ?>">暂停</a>
-    		<?php else: ?>
-    			<a class="btn btn-large btn-primary" href="<?php echo U('Main/restart');?>?sid=<?php echo ($sid); ?>">重启</a><?php endif; ?>
     </div>
 	<!-- Bootstrap -->    <script src="__PUBLIC__/tms/bootstrap/js/bootstrap.min.js"></script>
 </body>

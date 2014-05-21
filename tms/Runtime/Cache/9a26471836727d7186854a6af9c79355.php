@@ -83,6 +83,15 @@
 							    	</tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
 		                </tbody>
 		            </table>
+		            <form class="form-inline" method="post" action="<?php echo U('Main/setStockLimit');?>" >
+		    		 	<h3>涨幅：<input type="text" class="input-large"  value="<?php echo ($stockInfo["incLimit"]); ?>" name="incLimit">
+		    		 	跌幅：<input type="text" class="input-large"  value="<?php echo ($stockInfo["decLimit"]); ?>" name="decLimit">
+		    		 	<button class="btn btn-large btn-primary" type="submit">提交</button>
+		    		 	<?php if($stockInfo["status"] == 1): ?><a class="btn btn-large  btn-primary" href="<?php echo U('Main/pause');?>?sid=<?php echo ($sid); ?>">暂停</a>
+			    		<?php else: ?>
+			    			<a class="btn btn-large btn-primary" href="<?php echo U('Main/restart');?>?sid=<?php echo ($sid); ?>">重启</a><?php endif; ?>
+		    		 	</h3>
+		    		 </form>
     </div>
 	<!-- Bootstrap -->    <script src="__PUBLIC__/tms/bootstrap/js/bootstrap.min.js"></script>
 </body>

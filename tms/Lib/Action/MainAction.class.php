@@ -33,6 +33,7 @@ class MainAction extends BaseAction
     	$sid		=		$this->_get("sid");
     	$instructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid))->order('createTime desc')->select();
 //     	dump($instructList);
+    	$this->assign("sid",$sid);
     	$this->assign("stockInfo",D("StockInfo")->getStockInfo($sid));
     	$this->assign("instructList",$instructList);
     	$this->assign("sotckName",$instructList[0]["sotckName"]);
@@ -62,6 +63,16 @@ class MainAction extends BaseAction
     		$this->success("重启成功");
     	else
     		$this->error("重启失败，请重试");
+    }
+    
+    /**
+     * 设置股票涨跌幅页面
+     */
+    public function setStockLimit()
+    {
+    	$incLimit		=		$this->_post("incLimit");
+    	$decLimit		=		$this->_post("decLimit");
+    	
     }
 }
 

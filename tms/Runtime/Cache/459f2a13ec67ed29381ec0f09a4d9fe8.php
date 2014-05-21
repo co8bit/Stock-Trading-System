@@ -40,7 +40,7 @@
 
 </head>
 
-<body class="metro">
+<body>
 
     <div class="container">
 			<?php if($stockList == NULL ): ?><b>可管理股票为空</b>
