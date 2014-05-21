@@ -7,7 +7,6 @@
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #f5f5f5;
       }
 
       .form-signin {
@@ -36,7 +35,6 @@
       }
 
     </style>
-</head>
 
 </head>
 

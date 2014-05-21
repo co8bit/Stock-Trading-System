@@ -7,7 +7,6 @@
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #f5f5f5;
       }
 
       .form-signin {
@@ -36,7 +35,6 @@
       }
 
     </style>
-</head>
 
 </head>
 
@@ -45,7 +43,7 @@
     <div class="container">
 			<?php if($stockList == NULL ): ?><b>可管理股票为空</b>
    			<?php else: ?>
-		            <table class="table hovered">
+		            <table class="table table-hover">
 		                <thead>
 			                <tr>
 			                	<th>股票编号</th>

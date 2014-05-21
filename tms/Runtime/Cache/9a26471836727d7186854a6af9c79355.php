@@ -7,7 +7,6 @@
       body {
         padding-top: 40px;
         padding-bottom: 40px;
-        background-color: #f5f5f5;
       }
 
       .form-signin {
@@ -36,11 +35,10 @@
       }
 
     </style>
-</head>
 
 </head>
 
-<body class="metro">
+<body>
 
     <div class="container">
     				<p>
@@ -58,25 +56,44 @@
 								</td>
 			        		</tr>
 			        	</table>
-		            <table class="table hovered">
+			        <p><p><p>
+			        <h2>买指令表：</h2>
+		            <table class="table table-hover table-striped">
 		                <thead>
 			                <tr>
 			                	<th>序号</th>
-			                	<th>类型</th>
 			                	<th>价格</th>
 			                	<th>数量</th>
 			                	<th>创建时间</th>
 			                </tr>
 		                </thead>
-						
 		                <tbody>
-		                	<?php if($instructList == NULL ): ?><b>没有买卖指令</b>
+		                	<?php if($buyInstructList == NULL ): ?><b>没有买指令</b>
    							<?php else: ?>
-			                	<?php if(is_array($instructList)): $i = 0; $__LIST__ = $instructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-							    		<td style="width: 50px;"><?php echo ($i); ?></td>
-							    		<?php if($vo["ty"] == 0): ?><td class="span4">卖指令</td>
-							    		<?php else: ?>
-							    			<td class="span4">买指令</td><?php endif; ?>
+			                	<?php if(is_array($buyInstructList)): $i = 0; $__LIST__ = $buyInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+							    		<td class="span1"><?php echo ($i); ?></td>
+							    		<td class="span4"><?php echo ($vo["price"]); ?></td>
+							    		<td class="span4"><?php echo ($vo["num"]); ?></td>
+							    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
+							    	</tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
+		                </tbody>
+		            </table>
+		            <p><p><p>
+		            <h2>卖指令表：</h2>
+		            <table class="table table-hover table-striped">
+		                <thead>
+			                <tr>
+			                	<th>序号</th>
+			                	<th>价格</th>
+			                	<th>数量</th>
+			                	<th>创建时间</th>
+			                </tr>
+		                </thead>
+		                <tbody>
+		                	<?php if($sellInstructList == NULL ): ?><b>没有卖指令</b>
+   							<?php else: ?>
+			                	<?php if(is_array($sellInstructList)): $i = 0; $__LIST__ = $sellInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+							    		<td class="span1"><?php echo ($i); ?></td>
 							    		<td class="span4"><?php echo ($vo["price"]); ?></td>
 							    		<td class="span4"><?php echo ($vo["num"]); ?></td>
 							    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
@@ -84,12 +101,14 @@
 		                </tbody>
 		            </table>
 		            <form class="form-inline" method="post" action="<?php echo U('Main/setStockLimit');?>" >
-		    		 	<h3>涨幅：<input type="text" class="input-large"  value="<?php echo ($stockInfo["incLimit"]); ?>" name="incLimit">
-		    		 	跌幅：<input type="text" class="input-large"  value="<?php echo ($stockInfo["decLimit"]); ?>" name="decLimit">
-		    		 	<button class="btn btn-large btn-primary" type="submit">提交</button>
-		    		 	<?php if($stockInfo["status"] == 1): ?><a class="btn btn-large  btn-primary" href="<?php echo U('Main/pause');?>?sid=<?php echo ($sid); ?>">暂停</a>
-			    		<?php else: ?>
-			    			<a class="btn btn-large btn-primary" href="<?php echo U('Main/restart');?>?sid=<?php echo ($sid); ?>">重启</a><?php endif; ?>
+		    		 	<h3>
+		    		 		<input type="hidden" name="sid" value="<?php echo ($sid); ?>">
+			    		 	涨幅：<input type="text" class="input-large"  value="<?php echo ($stockInfo["incLimit"]); ?>" name="incLimit">
+			    		 	跌幅：<input type="text" class="input-large"  value="<?php echo ($stockInfo["decLimit"]); ?>" name="decLimit">
+			    		 	<button class="btn btn-large btn-primary" type="submit">提交</button>
+			    		 	<?php if($stockInfo["status"] == 1): ?><a class="btn btn-large  btn-primary" href="<?php echo U('Main/pause');?>?sid=<?php echo ($sid); ?>">暂停</a>
+				    		<?php else: ?>
+				    			<a class="btn btn-large btn-primary" href="<?php echo U('Main/restart');?>?sid=<?php echo ($sid); ?>">重启</a><?php endif; ?>
 		    		 	</h3>
 		    		 </form>
     </div>

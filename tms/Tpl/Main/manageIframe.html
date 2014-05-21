@@ -1,7 +1,7 @@
 <include file="Public:noHeader" />
 </head>
 
-<body class="metro">
+<body>
 
     <div class="container">
     				<p>
@@ -21,28 +21,48 @@
 								</td>
 			        		</tr>
 			        	</table>
-		            <table class="table hovered">
+			        <p><p><p>
+			        <h2>买指令表：</h2>
+		            <table class="table table-hover table-striped">
 		                <thead>
 			                <tr>
 			                	<th>序号</th>
-			                	<th>类型</th>
 			                	<th>价格</th>
 			                	<th>数量</th>
 			                	<th>创建时间</th>
 			                </tr>
 		                </thead>
-						
 		                <tbody>
-		                	<if condition="$instructList eq NULL "><b>没有买卖指令</b>
+		                	<if condition="$buyInstructList eq NULL "><b>没有买指令</b>
    							<else/>
-			                	<volist name="instructList" id="vo">
+			                	<volist name="buyInstructList" id="vo">
 							    	<tr>
-							    		<td style="width: 50px;">{$i}</td>
-							    		<if condition="$vo.ty eq 0">
-							    			<td class="span4">卖指令</td>
-							    		<else/>
-							    			<td class="span4">买指令</td>
-							    		</if>
+							    		<td class="span1">{$i}</td>
+							    		<td class="span4">{$vo.price}</td>
+							    		<td class="span4">{$vo.num}</td>
+							    		<td class="span4">{$vo.createTime}</td>
+							    	</tr>
+						    	</volist>
+					    	</if>
+		                </tbody>
+		            </table>
+		            <p><p><p>
+		            <h2>卖指令表：</h2>
+		            <table class="table table-hover table-striped">
+		                <thead>
+			                <tr>
+			                	<th>序号</th>
+			                	<th>价格</th>
+			                	<th>数量</th>
+			                	<th>创建时间</th>
+			                </tr>
+		                </thead>
+		                <tbody>
+		                	<if condition="$sellInstructList eq NULL "><b>没有卖指令</b>
+   							<else/>
+			                	<volist name="sellInstructList" id="vo">
+							    	<tr>
+							    		<td class="span1">{$i}</td>
 							    		<td class="span4">{$vo.price}</td>
 							    		<td class="span4">{$vo.num}</td>
 							    		<td class="span4">{$vo.createTime}</td>
@@ -52,14 +72,16 @@
 		                </tbody>
 		            </table>
 		            <form class="form-inline" method="post" action="{:U('Main/setStockLimit')}" >
-		    		 	<h3>涨幅：<input type="text" class="input-large"  value="{$stockInfo.incLimit}" name="incLimit">
-		    		 	跌幅：<input type="text" class="input-large"  value="{$stockInfo.decLimit}" name="decLimit">
-		    		 	<button class="btn btn-large btn-primary" type="submit">提交</button>
-		    		 	<if condition="$stockInfo.status eq 1">
-			    			<a class="btn btn-large  btn-primary" href="{:U('Main/pause')}?sid={$sid}">暂停</a>
-			    		<else/>
-			    			<a class="btn btn-large btn-primary" href="{:U('Main/restart')}?sid={$sid}">重启</a>
-			    		</if>
+		    		 	<h3>
+		    		 		<input type="hidden" name="sid" value="{$sid}">
+			    		 	涨幅：<input type="text" class="input-large"  value="{$stockInfo.incLimit}" name="incLimit">
+			    		 	跌幅：<input type="text" class="input-large"  value="{$stockInfo.decLimit}" name="decLimit">
+			    		 	<button class="btn btn-large btn-primary" type="submit">提交</button>
+			    		 	<if condition="$stockInfo.status eq 1">
+				    			<a class="btn btn-large  btn-primary" href="{:U('Main/pause')}?sid={$sid}">暂停</a>
+				    		<else/>
+				    			<a class="btn btn-large btn-primary" href="{:U('Main/restart')}?sid={$sid}">重启</a>
+				    		</if>
 		    		 	</h3>
 		    		 </form>
     </div>
