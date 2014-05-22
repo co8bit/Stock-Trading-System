@@ -21,12 +21,13 @@ class UserModel extends Model {
 	
 	/**
 	 * 判断用户名和密码是否能登录
-	 * @param string $userPassword 用户密码
+	 * @param 	string $userName;用户名
+	 * 					string $userPassword 用户密码
 	 * @return 数据库返回的结果集，数组大小应为1。外面调用形如$re[0][]
 	 */
-	public function login($userPassword)
+	public function login($userName,$userPassword)
 	{
-		$condition['userName'] = $this->userName;
+		$condition['userName'] = $userName;
 		$condition['userPassword'] = $userPassword;
 		$tmp = $this->where($condition)->select();
 		if (!empty($tmp))
@@ -40,6 +41,8 @@ class UserModel extends Model {
 		$condition['auth'] = 'pt';
 		return $this->where($condition)->select();
 	}
+	
+	
 	/**
 	 * 删除普通管理员账户
 	 * @param string $uid 普通管理员id
@@ -51,6 +54,8 @@ class UserModel extends Model {
 		$result = $this->where($condition)->delete();
 		return $result;
 	}
+	
+	
 	/**
 	 * 添加普通管理员账户
 	 * @param  $new_user_array 新普通管理员信息数组
@@ -87,18 +92,6 @@ class UserModel extends Model {
 			return $tmp[0];
 	}
 	
-	
-	
-	/**
-	 * 新用户注册
-	* @param	$data;用户相关信息
-	* @return	int；注册是否成功
-	* 				如果数据非法或者查询错误则返回false;
-	* 				如果是自增主键 则返回主键值，否则返回1
-	*/
-	public function sign($originData)
-	{
-	}
 	
 }
 ?>

@@ -13,7 +13,7 @@ class MainAction extends BaseAction
     	$stockArray = D("UserAuth")->where(array("uid"=>$this->uid))->join(' a6_stock_info ON  a6_user_auth.sid = a6_stock_info.sid')->select();
     
     	$is_root_user = $this->checkAuth($this->uid,array("action"=>"isRoot"));
-    	dump($is_root_user);
+//     	dump($is_root_user);
     	if($is_root_user){
     		$this->redirect("Root/rootUserIndex");
     	}

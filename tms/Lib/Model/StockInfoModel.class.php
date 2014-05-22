@@ -1,10 +1,6 @@
 <?php
 class StockInfoModel extends Model {
 	
-	public function init()
-	{
-		
-	}
 	public function selectStock(){
 		return $this->select();
 	}
@@ -13,17 +9,63 @@ class StockInfoModel extends Model {
 		$result = $this->where($condition)->delete();
 		return $result;
 	}
-	public function getStockInfo($name)
-	{
-		$tmp = $this->where("stockName=\"".$name."\"")->select();
-		if ( ($tmp === false) || ($tmp === null) )
-			return $tmp;
-		else
-			return $tmp[0];
-	}
-	public function addStock($new_stock_array){
-		return $this->add($new_stock_array);
 	
+	
+	
+	/**
+	 * 得到股票信息
+	 * @param		int $sid;股票sid
+	 * 	@return		array or bool; 数据表中的一行 or false
+	 * 						
+	 */
+	public function getStockInfo($sid)
+	{
+		$re = $this->where(array("sid"=>$sid))->find();
+		if (empty($re))
+			return false;
+		else
+			return $re;
+	}
+	
+	/**
+	 * 设置股票暂停状态
+	 * @param		int $sid;股票 
+	 * @return		bool;是否设置成功
+	 */
+	public function setPause($sid)
+	{
+		$re = $this->where(array("sid"=>$sid))->setField("status",0);
+		if ($re === false)
+			return false;
+		else
+			return true;			
+	}
+	
+	/**
+	 * 设置股票状态为重启
+	 * @param		int $sid;股票
+	 * @return		bool;是否设置成功
+	 */
+	public function setRestart($sid)
+	{
+		$re = $this->where(array("sid"=>$sid))->setField("status",1);
+		if ($re === false)
+			return false;
+		else
+			return true;
+	}
+	
+	/**
+	 * 添加股票
+	 * @param 		int uid;该操作的操作用户
+	 * 						string $stockName;
+	 * @return		bool;添加是否成功
+	 */
+	public function addStock($uid,$stockName)
+	{
+		$sid		=		$this->add(array("stockName"=>$stockName));
+		empty($sid) && $this->error("添加错误，请重试");
+		return D("UserAuth")->add(array("uid"=>$uid,"sid"=>$sid));
 	}
 }
 ?>
