@@ -60,12 +60,24 @@ class StockInfoModel extends Model {
 	 * @param 		int uid;该操作的操作用户
 	 * 						string $stockName;
 	 * @return		bool;添加是否成功
+	 * by	co8bit
 	 */
 	public function addStock($uid,$stockName)
 	{
 		$sid		=		$this->add(array("stockName"=>$stockName));
 		empty($sid) && $this->error("添加错误，请重试");
 		return D("UserAuth")->add(array("uid"=>$uid,"sid"=>$sid));
+	}
+	
+	
+	/**
+	 * by官万先
+	 * @param unknown $new_stock_array
+	 * @return Ambigous <mixed, boolean, string, false, number>
+	 */
+	public function addStock2($new_stock_array){
+		return $this->add($new_stock_array);
+	
 	}
 }
 ?>

@@ -153,7 +153,7 @@ class RootAction extends BaseAction
     				"stockName"=>$new_stock_name,
     
     		);
-    		$add_result=$StockInfo->addStock($new_stock_unit);
+    		$add_result=$StockInfo->addStock2($new_stock_unit);
     		//dump($add_result);
     		if($add_result<=0){
     			$this->error('添加失败，数据库错误',U('Root/rootUserIndex'));
