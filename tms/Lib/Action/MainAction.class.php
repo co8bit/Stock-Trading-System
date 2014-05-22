@@ -1,5 +1,5 @@
 <?php
-
+/*这个是管理员登陆后显示的第一个页面*/
 class MainAction extends BaseAction 
 {
 
@@ -10,9 +10,20 @@ class MainAction extends BaseAction
     
     public function index()
     {
-    	$this->display();
-    }
+    	$stockArray = D("UserAuth")->where(array("uid"=>$this->uid))->join(' a6_stock_info ON  a6_user_auth.sid = a6_stock_info.sid')->select();
     
+    	$is_root_user = $this->checkAuth($this->uid,array("action"=>"isRoot"));
+    	dump($is_root_user);
+    	if($is_root_user){
+    		$this->redirect("Root/rootUserIndex");
+    	}
+    	else{
+    		$this->display();
+    	}
+
+    }
+
+
     public function manage()
     {
     	$sid		=		$this->_get("sid");

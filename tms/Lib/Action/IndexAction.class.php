@@ -34,7 +34,7 @@ class IndexAction extends Action
     		}
     		else
     		{
-    			$this->error('登录失败');
+    			$this->error('登录失败',U('Index/login'));
     		}
     	}
     	else

@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>超级管理员操作界面</title>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+this is root stockAuthChange, after login;
+<form name="stock_auth_change" method="post" action="{:U('Root/updataStockFunction?sid=1')}">
+  <table width="200">
+    <volist name="stock_auth_users" id="stock_auth_users_id">
+      <tr>
+        <td><label>
+            
+            <input name="StockAuthCheckboxGroup[]" type="checkbox" id="StockAuthCheckboxGroup.{$key}"  value="{$stock_auth_users_id.uid}"  {$stock_auth_users_id.hasauth}>
+            {$key}."---".{$stock_auth_users_id.uid}."---".{$stock_auth_users_id.userName}</label>
+        </td>
+      </tr>
+    </volist>
+
+  </table>
+   <input name="stock_select" type="hidden" value="{$stock_select}">  <!--重要，可以将当前action中的变量通过form传给下一个action-->
+   <button  type="submit" name="update_stock_auth" id="update_stock_auth_id" ">更新股票股票权限</button>
+</form>
+</body>
+{$var}
+</html>

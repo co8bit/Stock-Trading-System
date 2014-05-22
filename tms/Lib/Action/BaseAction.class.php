@@ -26,7 +26,7 @@ class BaseAction extends Action
      * 							为arry时，传入$action["action"]="look",$action["sid"]=sid（股票id）;判断该用户是否有权限管理该股票
      * @return		bool 是否具有该权限
      */
-    protected function checkAuth($uid,$action = array())
+    protected function checkAuth($uid,$action = array())//检测当前uid用户对于sid股票的权限或者判断当前用户是否为root用户
     {
     	if (session("auth") == "root")
     		return true;

@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>普通管理员操作界面</title>
 </head>
 <body>
-this is root index;
+this is pt user index, after login ;
 </body>
 </html>
