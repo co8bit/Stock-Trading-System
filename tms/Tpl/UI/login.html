@@ -60,7 +60,7 @@
 
 	<div class="logo">
 	<!-- <img src="media/image/logo-big.png" alt="" /> -->
-   <h1><span class="myLogo"><strong>A</strong></span><span><strong>6</strong></span></h1></div>
+   <h1><span ><strong>股票交易系统</strong></span><span class="myLogo"><strong>管理子系统</strong></span></h1></div>
 
 	<!-- END LOGO -->
 
@@ -72,13 +72,13 @@
 
 		<form class="form-vertical login-form" action="index.html" novalidate="novalidate" style="display: block;">
 
-			<h3 class="form-title">Login to your account</h3>
+			<h3 class="form-title">登陆到您的账号</h3>
 
 			<div class="alert alert-error hide">
 
 				<button class="close" data-dismiss="alert"></button>
 
-				<span>Enter any username and password.</span>
+				<span>请输入账号和密码.</span>
 
 			</div>
 
@@ -86,7 +86,7 @@
 
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-				<label class="control-label visible-ie8 visible-ie9">Username</label>
+				<label class="control-label visible-ie8 visible-ie9">账号</label>
 
 				<div class="controls">
 
@@ -94,7 +94,7 @@
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username">
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="账号" name="username">
 
 					</div>
 
@@ -104,7 +104,7 @@
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Password</label>
+				<label class="control-label visible-ie8 visible-ie9">密码</label>
 
 				<div class="controls">
 
@@ -112,7 +112,7 @@
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password">
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="密码" name="password">
 
 					</div>
 
@@ -124,13 +124,13 @@
 
 				<label class="checkbox">
 
-				<div class="checker"><span class="checked"><input type="checkbox" name="remember" value="1"></span></div> Remember me
+				<div class="checker"><span class="checked"><input type="checkbox" name="remember" value="1"></span></div> 记住我
 
 				</label>
 
 				<button type="submit" class="btn green pull-right">
 
-				Login <i class="m-icon-swapright m-icon-white"></i>
+				登陆 <i class="m-icon-swapright m-icon-white"></i>
 
 				</button>
 
@@ -138,13 +138,13 @@
 
 			<div class="forget-password">
 
-				<h4>Forgot your password ?</h4>
+				<h4>忘记您的密码 ?</h4>
 
 				<p>
 
-					no worries, click <a href="javascript:;" class="" id="forget-password">here</a>
+					别担心，请点击 <a href="javascript:;" class="" id="forget-password">这里</a>
 
-					to reset your password.
+					以重置密码.
 
 				</p>
 
@@ -154,9 +154,9 @@
 
 				<p>
 
-					Don't have an account yet ?&nbsp;
+					没有账号？ &nbsp;
 
-					<a href="javascript:;" id="register-btn" class="">Create an account</a>
+					<a href="javascript:;" id="register-btn" class="">创建账号</a>
 
 				</p>
 
@@ -170,9 +170,9 @@
 
 		<form class="form-vertical forget-form" action="index.html" novalidate="novalidate" style="display: none;">
 
-			<h3 class="">Forget Password ?</h3>
+			<h3 class="">忘记密码 ?</h3>
 
-			<p>Enter your e-mail address below to reset your password.</p>
+			<p>输入注册邮箱以重置密码.</p>
 
 			<div class="control-group">
 
@@ -182,7 +182,7 @@
 
 						<i class="icon-envelope"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email">
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="邮箱" name="email">
 
 					</div>
 
@@ -194,13 +194,13 @@
 
 				<button type="button" id="back-btn" class="btn">
 
-				<i class="m-icon-swapleft"></i> Back
+				<i class="m-icon-swapleft"></i> 返回
 
 				</button>
 
 				<button type="submit" class="btn green pull-right">
 
-				Submit <i class="m-icon-swapright m-icon-white"></i>
+				提交 <i class="m-icon-swapright m-icon-white"></i>
 
 				</button>
 
@@ -214,13 +214,13 @@
 
 		<form class="form-vertical register-form" action="index.html" novalidate="novalidate">
 
-			<h3 class="">Sign Up</h3>
+			<h3 class="">注册</h3>
 
-			<p>Enter your account details below:</p>
+			<p>请输入注册信息:</p>
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Username</label>
+				<label class="control-label visible-ie8 visible-ie9">账号</label>
 
 				<div class="controls">
 
@@ -228,7 +228,7 @@
 
 						<i class="icon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username">
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="账号" name="username">
 
 					</div>
 
@@ -236,28 +236,60 @@
 
 			</div>
 
-			<div class="control-group">
+			<!-- <div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">UserType</label>
+				<label class="control-label visible-ie8 visible-ie9">管理员类型（改成选项？）</label>
 
 				<div class="controls">
 
 					<div class="input-icon left">
 
 						<i class="icon-user"></i>
-						<!-- <i class="glyphicon glyphicon-user"></i> -->
+						<!- <i class="glyphicon glyphicon-user"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="UserType" name="UserType">
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="管理员类型（改成选项）" name="UserType">
 
 					</div>
 
 				</div>
 
-			</div>
+			</div> -->
+
+			<div class="control-group" >
+
+
+													<label class="control-label">管理员类型:<span class="required"></span></label>
+
+													<div class="controls">
+
+														<label class="radio">
+
+														<input type="radio" name="gender" value="M" data-title="Male" />
+
+														最高管理员
+														<!-- 修改js？ name="gender" value="M"-->
+
+														</label>
+
+														<div class="clearfix"></div>
+
+														<label class="radio">
+
+														<input type="radio" name="gender" value="F" data-title="Female"/>
+
+														业务管理员
+
+														</label>
+
+														<div id="form_gender_error"></div>
+
+													</div>
+
+												</div>
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Password</label>
+				<label class="control-label visible-ie8 visible-ie9">密码</label>
 
 				<div class="controls">
 
@@ -265,7 +297,7 @@
 
 						<i class="icon-lock"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="Password" name="password">
+						<input class="m-wrap placeholder-no-fix" type="password" id="register_password" placeholder="密码" name="password">
 
 					</div>
 
@@ -275,7 +307,7 @@
 
 			<div class="control-group">
 
-				<label class="control-label visible-ie8 visible-ie9">Re-type Your Password</label>
+				<label class="control-label visible-ie8 visible-ie9">请再次输入密码</label>
 
 				<div class="controls">
 
@@ -283,7 +315,7 @@
 
 						<i class="icon-ok"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Re-type Your Password" name="rpassword">
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="请再次输入密码" name="rpassword">
 
 					</div>
 
@@ -295,7 +327,7 @@
 
 				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-				<label class="control-label visible-ie8 visible-ie9">Email</label>
+				<label class="control-label visible-ie8 visible-ie9">邮箱</label>
 
 				<div class="controls">
 
@@ -303,7 +335,7 @@
 
 						<i class="icon-envelope"></i>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Email" name="email">
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="邮箱" name="email">
 
 					</div>
 
@@ -317,7 +349,7 @@
 
 					<label class="checkbox">
 
-					<div class="checker"><span><input type="checkbox" name="tnc"></span></div> I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+					<div class="checker"><span><input type="checkbox" name="tnc"></span></div> 我同意 <a href="#">XXX</a> 和 <a href="#">YYY</a>
 
 					</label>
 
@@ -331,13 +363,13 @@
 
 				<button id="register-back-btn" type="button" class="btn">
 
-				<i class="m-icon-swapleft"></i>  Back
+				<i class="m-icon-swapleft"></i>  返回
 
 				</button>
 
 				<button type="submit" id="register-submit-btn" class="btn green pull-right">
 
-				Sign Up <i class="m-icon-swapright m-icon-white"></i>
+				注册 <i class="m-icon-swapright m-icon-white"></i>
 
 				</button>
 

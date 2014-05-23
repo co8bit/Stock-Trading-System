@@ -194,7 +194,7 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     // set wizard title
-                    $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                    $('.step-title', $('#form_wizard_1')).text('完成度 ' + (index + 1) + ' / ' + total);
                     // set done steps
                     jQuery('li', $('#form_wizard_1')).removeClass("done");
                     var li_list = navigation.find('li');
@@ -225,7 +225,7 @@ var FormWizard = function () {
                     var total = navigation.find('li').length;
                     var current = index + 1;
                     // set wizard title
-                    $('.step-title', $('#form_wizard_1')).text('Step ' + (index + 1) + ' of ' + total);
+                    $('.step-title', $('#form_wizard_1')).text('完成度 ' + (index + 1) + ' / ' + total);
                     // set done steps
                     jQuery('li', $('#form_wizard_1')).removeClass("done");
                     var li_list = navigation.find('li');
