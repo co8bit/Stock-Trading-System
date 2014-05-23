@@ -75,8 +75,8 @@ var FormWizard = function () {
                         required: true
                     },
                     card_number: {
-                        minlength: 16,
-                        maxlength: 16,
+                        minlength: 18,
+                        maxlength: 18,
                         required: true
                     },
                     card_cvc: {
@@ -116,7 +116,7 @@ var FormWizard = function () {
                     }
                 },
 
-                invalidHandler: function (event, validator) { //display error alert on form submit   
+                invalidHandler: function (event, validator) { //display error alert on form submit
                     success.hide();
                     error.show();
                     App.scrollTo(error, -200);
