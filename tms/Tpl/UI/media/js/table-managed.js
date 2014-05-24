@@ -4,7 +4,7 @@ var TableManaged = function () {
 
         //main function to initiate the module
         init: function () {
-            
+
             if (!jQuery().dataTable) {
                 return;
             }
@@ -19,20 +19,30 @@ var TableManaged = function () {
                   { "bSortable": false },
                   { "bSortable": false }
                 ],
+
                 "aLengthMenu": [
                     [5, 15, 20, -1],
-                    [5, 15, 20, "All"] // change per page values here
+                    [5, 15, 20, "全部"] // change per page values here
                 ],
+                /*"oSearch":{
+                    "sSearch": "搜索"
+                }*/
                 // set the initial value
                 "iDisplayLength": 5,
                 "sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span6'i><'span6'p>>",
                 "sPaginationType": "bootstrap",
                 "oLanguage": {
-                    "sLengthMenu": "_MENU_ records per page",
+                    //"sLengthMenu": "_MENU_ 个条目 / 页",
                     "oPaginate": {
-                        "sPrevious": "Prev",
-                        "sNext": "Next"
-                    }
+                        "sPrevious": "上一页",
+                        "sNext": "下一页",
+
+                    },
+                    "sZeroRecords": "抱歉， 没有找到",
+                    "sSearch": "搜索",
+                    "sLengthMenu": "每页显示 _MENU_ 条记录",
+                    "sInfo": "当前显示 _START_ 到 _END_ 条，共 _TOTAL_ 条记录",
+                    "sInfoFiltered": "(共 _MAX_ 条记录)",
                 },
                 "aoColumnDefs": [{
                         'bSortable': false,
