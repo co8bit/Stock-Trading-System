@@ -49,9 +49,9 @@
 			                <tr>
 			                	<th>股票编号</th>
 			                	<th>股票名称</th>
-			                	<th>最新成交价格</th>
-			                	<th>最新成交数量</th>
-			                	<th>股票状态</th>
+			                	<!--  <th>最新成交价格</th>-->
+			                	<!--  <th>最新成交数量</th>-->
+			                	<!--  <th>股票状态</th>-->
 			                	<th>操作</th>
 			                </tr>
 		                </thead>
@@ -60,11 +60,11 @@
 		                	<?php if(is_array($stockList)): $i = 0; $__LIST__ = $stockList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
 						    		<td class="span2"><?php echo ($vo["sid"]); ?></td>
 						    		<td class="span3"><?php echo ($vo["stockName"]); ?></td>
-						    		<td class="span3"><?php echo ($vo["price"]); ?></td>
-						    		<td class="span3"><?php echo ($vo["num"]); ?></td>
-						    		<?php if($vo["status"] == 1): ?><td class="span2">正常</td>
+						    		<!--  <td class="span3"><?php echo ($vo["price"]); ?></td>-->
+						    		<!--  <td class="span3"><?php echo ($vo["num"]); ?></td>-->
+						    		<!--  <?php if($vo["status"] == 1): ?><td class="span2">正常</td>
 						    		<?php else: ?>
-						    			<td class="span2">暂停</td><?php endif; ?>
+						    			<td class="span2">暂停</td><?php endif; ?>-->
 									<td style="width: 70px;">
 										<div onclick="window.parent.location='<?php echo U("Main/manage");?>?sid=<?php echo ($vo["sid"]); ?>';" class="btn btn-primary">管理</div>
 									</td>

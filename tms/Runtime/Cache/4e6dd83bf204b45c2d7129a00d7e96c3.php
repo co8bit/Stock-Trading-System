@@ -49,42 +49,15 @@
 	<!-- END PAGE LEVEL STYLES -->
 
 	<link rel="shortcut icon" href="__PUBLIC__/tms/media/image/favicon.ico" />
-<script>
-function stock_manage_choose(button_name){
-	if(button_name=='delete_stock'){
-			  document.stock_manage.action="<?php echo U('Root/deleteStock');?>";
-	}
-	else{
-			  document.stock_manage.action="<?php echo U('Root/stockAuthChange?sid=-1');?>";
-	}
-}
-function stockcheck(obj){
-	
-	var new_stockname=document.getElementById("new_stock_name_id").value;
 
-	if(new_stockname==""){
-		 document.getElementById(obj).innerHTML=" <font color=red>股票名称不能为空！</font>"; 
-		 return false;
-	}
-	else{
-		 document.getElementById(obj).innerHTML=""; 
-		 return true;
-	}
-}
-function stock_add_button(){
-		if(stockcheck('stockexist_id')==true){
-			document.stock_add.action="<?php echo U('Root/addStock');?>";
-		}
-}
-</script>
 </head>
 
 <!-- END HEAD -->
 
 <!-- BEGIN BODY -->
 
-<!-- <body class="page-header-fixed"> -->
 <body class="page-header-fixed page-sidebar-fixed page-sidebar-closed">
+
 	<!-- BEGIN HEADER -->
 
 	<div class="header navbar navbar-inverse navbar-fixed-top">
@@ -99,7 +72,6 @@ function stock_add_button(){
 
 				<a class="brand" href="index.html">
 
-				<!-- <img src="__PUBLIC__/tms/media/image/logo.png" alt="logo" /> -->
 				<p> 股票交易管理系统</p>
 
 				</a>
@@ -147,11 +119,7 @@ function stock_add_button(){
 
 		<!-- BEGIN SIDEBAR -->
 
-		<!-- BEGIN SIDEBAR -->
-
 		<div class="page-sidebar nav-collapse collapse">
-
-			<!-- BEGIN SIDEBAR MENU -->
 
 			<ul class="page-sidebar-menu">
 
@@ -165,94 +133,31 @@ function stock_add_button(){
 
 				</li>
 
-				<li>
-				</li>
+				<li class="active">
 
-				<!-- <li class="start "> -->
-				<li class="">
-					<a href="<?php echo U('Root/rootUserIndex');?>">
+					<a href="list.html">
 
 					<i class="icon-th"></i>
 
-					<span class="title">添加新管理员</span>
+					<span class="title">股票列表</span>
 
 					</a>
 
 				</li>
-				<li class="">
-					<a href="<?php echo U('Root/putongUserManageIndex');?>">
+
+				<!--li class="">
+
+					<a href="manage.html">
 
 					<i class="icon-th"></i>
 
-					<span class="title">管理业务管理员</span>
+					<span class="title">股票管理</span>
 
 					</a>
 
-				</li>
-
-				<li class="">
-					<a href="<?php echo U('Root/putongUserAuthIndex');?>">
-
-					<i class="icon-th"></i>
-
-					<span class="title">设置业务管理员权限</span>
-
-					</a>
-
-				</li>
-                <li class="active">
-					<a href="">
-
-					<i class="icon-th"></i>
-
-					<span class="title">修改股票管理权限</span>
-
-					</a>
-
-				</li>
-
-
-
-				<!-- <li class="active ">
-
-					<a href="javascript:;">
-
-					<i class="icon-table"></i>
-
-					<span class="title">Form Stuff</span>
-
-					<span class="selected"></span>
-
-					<span class="arrow open"></span>
-
-					</a>
-
-					<ul class="sub-menu">
-
-
-
-
-
-						<li class="active">
-
-							<a href="form_wizard.html">
-
-							添加新管理员</a>
-
-						</li>
-
-
-
-
-
-					</ul>
-
-				</li>
- -->
+				</li-->
 
 			</ul>
-
-			<!-- END SIDEBAR MENU -->
 
 		</div>
 
@@ -261,28 +166,6 @@ function stock_add_button(){
 		<!-- BEGIN PAGE -->
 
 		<div class="page-content">
-
-			<!-- BEGIN SAMPLE PORTLET CONFIGURATION MODAL FORM-->
-
-			<div id="portlet-config" class="modal hide">
-
-				<div class="modal-header">
-
-					<button data-dismiss="modal" class="close" type="button"></button>
-
-					<h3>portlet Settings</h3>
-
-				</div>
-
-				<div class="modal-body">
-
-					<p>Here will be a configuration form</p>
-
-				</div>
-
-			</div>
-
-			<!-- END SAMPLE PORTLET CONFIGURATION MODAL FORM-->
 
 			<!-- BEGIN PAGE CONTAINER-->
 
@@ -294,15 +177,9 @@ function stock_add_button(){
 
 					<div class="span12">
 
-						<!-- BEGIN STYLE CUSTOMIZER -->
-
-
-
-						<!-- END BEGIN STYLE CUSTOMIZER -->
-
 						<!-- BEGIN PAGE TITLE & BREADCRUMB-->
 
-
+						<h3 class="page-title">股票列表</h3>
 
 						<!-- END PAGE TITLE & BREADCRUMB-->
 
@@ -314,11 +191,7 @@ function stock_add_button(){
 
 				<!-- BEGIN PAGE CONTENT-->
 
-				
-
-
-				<!-- BEGIN 2ND ROW -->
-<div class="row-fluid">
+				<div class="row-fluid">
 
 					<div class="span12">
 
@@ -328,90 +201,25 @@ function stock_add_button(){
 
 							<div class="portlet-title">
 
-								<div class="caption"><?php echo ($stock_name); ?>  权限列表<i class="icon-globe"></i></div>
+								<div class="caption"><i class="icon-globe"></i></div>
 
 								<div class="tools">
 
 									<a href="javascript:;" class="collapse"></a>
 
-									<a href="javascript:;" data-toggle="modal" class="config"></a>
 
-									<a href="" class="reload"></a>
-
-									<a href="javascript:;" class="remove"></a>
+									<a href="javascript:;" class="reload"></a>
 
 								</div>
 
 							</div>
 
 							<div class="portlet-body">
-							<form name="stock_auth_change" method="post" action="<?php echo U('Root/updataStockFunction');?>">
-							
 
-								<div class="clearfix">
 
-									<div class="btn-group">
+								<iframe name="theIframe"  id="theIframe" src="<?php echo U('Main/indexIframe');?>" width="100%"  height="700" frameborder="0"  scrolling="auto"></iframe>
 
-										<!-- <button id="sample_editable_1_new" class="btn green">
-
-										Add New <i class="icon-plus"></i>
-
-										</button> -->
-
-									</div>
-
-									
-
-								</div>
-
-								<table class="table table-striped table-bordered table-hover" id="sample_1">
-
-									<thead>
-
-										<tr>
-
-											<th style="width:8px;"><input type="hidden" class="group-checkable" /></th>
-											<th>管理员ID</th>
-											<th>管理员账号</th>
-
-											<th class="hidden-480">邮箱</th>
-
-											<th class="hidden-480">管理股票数量</th>
-
-											<th class="hidden-480">添加日期（先不删去吧，删去以后会变怪，下一版再改js）</th>
-
-											<th class="hidden-480">管理员状态</th>
-
-											<!-- <th ></th> -->
-
-										</tr>
-
-									</thead>
-									
-									<tbody>
-									<?php if(is_array($stock_auth_users)): $i = 0; $__LIST__ = $stock_auth_users;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$stock_auth_users_id): $mod = ($i % 2 );++$i;?><tr class="odd gradeX">
-
-											<td><label><input name="StockAuthCheckboxGroup[]" type="checkbox" id="StockAuthCheckboxGroup.<?php echo ($key); ?>"  value="<?php echo ($stock_auth_users_id["uid"]); ?>"  <?php echo ($stock_auth_users_id["hasauth"]); ?>></label></td>
-
-											<td><input  type="hidden"><?php echo ($stock_auth_users_id["uid"]); ?> </input></td>
-											<td><input  type="hidden"><?php echo ($stock_auth_users_id["userName"]); ?> </input></td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
-
-											<td class="hidden-480">120</td>
-
-											<td class="center hidden-480">12 Jan 2012</td>
-
-											<td ><span class="<?php if(($stock_auth_users_id["active_status"]) == "1"): ?>label label-success<?php else: ?>label label-warning<?php endif; ?>"><?php if(($stock_auth_users_id["active_status"]) == "1"): ?>正常<?php else: ?>锁定<?php endif; ?></span></td>  <!--  双引号内加thinkphp标签可以将返回值以字符串付给class 属性-->
-
-											</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-									</tbody>
-									
-								</table>
-								<input name="stock_select" type="hidden" value="<?php echo ($stock_select); ?>">
-<input  class="btn blue dropdown-toggle" type="submit" value="更新" name="update_stock_auth" id="update_stock_auth_id" ></input>                      
-							
-						</form>
-                        </div>
+							</div>
 
 						</div>
 
@@ -420,29 +228,20 @@ function stock_add_button(){
 					</div>
 
 				</div>
-				<!-- END 2ND ROW -->
-
-				
-				<!-- <div class="clearfix"></div> -->
-
-				<!-- <div class="clearfix"></div> -->
-
 
 				<!-- END PAGE CONTENT-->
 
+			</div>
 
 			<!-- END PAGE CONTAINER-->
 
 		</div>
-
 
 		<!-- END PAGE -->
 
 	</div>
 
 	<!-- END CONTAINER -->
-	</div>
-			<!-- <div class="clearfix"></div> -->
 
 	<!-- BEGIN FOOTER -->
 

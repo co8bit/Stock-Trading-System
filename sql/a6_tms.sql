@@ -29,20 +29,19 @@ create table a6_stock_info(
 	price double NOT NULL,/*最新成交价格*/
 	num int NOT NULL,/*最新成交数量*/
 	incLimit double NOT NULL,/*涨幅限制*/
-	decLimit double NOT NULL,/*跌幅限制*/
 	primary key(sid)
 ) CHARACTER SET utf8 COLLATE utf8_general_ci;
-insert a6_stock_info values(null,"新浪科技",1,12,2,0.05,0.05);
-insert a6_stock_info values(null,"国家电网",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"新浪",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"百度",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"搜狐",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"亚马逊",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"宝钢",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"中石油",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"中国电信",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"中国移动",1,23,65,0.05,0.05);
-insert a6_stock_info values(null,"中国联通",1,23,65,0.05,0.05);
+insert a6_stock_info values(null,"新浪科技",1,12,2,0.05);
+insert a6_stock_info values(null,"国家电网",1,23,65,0.05);
+insert a6_stock_info values(null,"新浪",1,23,65,0.05);
+insert a6_stock_info values(null,"百度",1,23,65,0.05);
+insert a6_stock_info values(null,"搜狐",1,23,65,0.05);
+insert a6_stock_info values(null,"亚马逊",1,23,65,0.05);
+insert a6_stock_info values(null,"宝钢",1,23,65,0.05);
+insert a6_stock_info values(null,"中石油",1,23,65,0.05);
+insert a6_stock_info values(null,"中国电信",1,23,65,0.05);
+insert a6_stock_info values(null,"中国移动",1,23,65,0.05);
+insert a6_stock_info values(null,"中国联通",1,23,65,0.05);
 
 create table a6_user_auth(
 	uid bigint NOT NULL,
