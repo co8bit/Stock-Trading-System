@@ -10,8 +10,9 @@ class RootAction extends BaseAction
     }
 
     public function rootUserIndex(){
+
     	
-    	$User = D('User');
+/*     	$User = D('User');
     
     	$list = $User->selectPtUser();
     	//$list = $User->selectPtUser();
@@ -19,9 +20,24 @@ class RootAction extends BaseAction
     	//dump(getdate());
     	$StockInfo=D('StockInfo');
     	$stock_list=$StockInfo->selectStock();
-    	$this->assign('stock_list',$stock_list);
+    	$this->assign('stock_list',$stock_list); */
     	$this->display();
     	
+    }
+    public function putongUserManageIndex(){
+    	$User = D('User');
+    	
+    	$list = $User->selectPtUser();
+    	//$list = $User->selectPtUser();
+    	$this->assign('list',$list);
+    	
+    	$this->display();
+    }
+    public function putongUserAuthIndex(){
+    	$StockInfo=D('StockInfo');
+    	$stock_list=$StockInfo->selectStock();
+    	$this->assign('stock_list',$stock_list);
+    	$this->display();
     }
     public function deletePuTongUser(){
     	
@@ -30,14 +46,14 @@ class RootAction extends BaseAction
      		$delete_result=$User->deleteUser($this->_post('PtUserRadioGroup'));
 
      		if($delete_result==false){
-     		      $this->error('删除普通管理员失败，数据库错误',U('Root/rootUserIndex'));		
+     		      $this->error('删除普通管理员失败，数据库错误',U('Root/putongUserManageIndex'),1);		
      		}
      		else{
-     		      $this->success('删除普通管理员成功',U('Root/rootUserIndex'));		
+     		      $this->success('删除普通管理员成功',U('Root/putongUserManageIndex'),1);		
      		}
     	}
     	else{
-    		$this->error('删除普通管理员失败，未选择操作对象',U('Root/rootUserIndex'));
+    		$this->error('删除普通管理员失败，未选择操作对象',U('Root/putongUserManageIndex'),1);
     	} 
 
     	
@@ -46,10 +62,11 @@ class RootAction extends BaseAction
     	$new_user_name=$this->_post('new_pt_user_name');
     	$new_user_password=$this->_post('new_pt_user_password');
     	$new_user_password_confirm=$this->_post('new_pt_user_passwordconfirm');
+
     	$User = D('User');
     	$rs=$User->getUserInfo($new_user_name);
     	if($rs!=NULL){
-    		$this->error('用户已经存在，不需要添加',U('Root/rootUserIndex'));
+    		$this->error('用户已经存在，不需要添加',U('Root/putongUserManageIndex'),1);
     	}
     	else{
     		$new_user_unit=array(
@@ -62,10 +79,10 @@ class RootAction extends BaseAction
     		$add_result=$User->addUser($new_user_unit);
     		//dump($add_result);
     		if($add_result<=0){
-    			$this->error('添加失败，数据库错误',U('Root/rootUserIndex'));
+    			$this->error('添加失败，数据库错误',U('Root/putongUserManageIndex'),1);
     		}
     		else{
-    			$this->success('新业务管理员添加成功',U('Root/rootUserIndex'));
+    			$this->success('新业务管理员添加成功',U('Root/putongUserManageIndex'),1);
     		}
     		
     	}
@@ -86,22 +103,21 @@ class RootAction extends BaseAction
     	   // dump($lockornot);
     	    if($lockornot=="1"){
     	    	$change_result=$User->where("uid=".$this->_post('PtUserRadioGroup'))->setField('active_status','0');
-    	    	dump($change_result);
 
-    	    		$this->success('普通管理员解锁成功',U('Root/rootUserIndex'));
+    	    	$this->success('普通管理员锁定成功',U('Root/putongUserManageIndex'),1);
 
     	    }
     	    else{
-    	    	dump($change_result);
     	    	$change_result=$User->where("uid=".$this->_post('PtUserRadioGroup'))->setField('active_status','1');
 
-    	    		$this->success('普通管理员锁定成功',U('Root/rootUserIndex'));
+    	    		
+    	    		$this->success('普通管理员解锁成功',U('Root/putongUserManageIndex'),1);
 
     	    }
 
     	}
     	else{
-    		$this->error('锁定/解锁普通管理员失败，未选择操作对象',U('Root/rootUserIndex'));
+    		$this->error('锁定/解锁普通管理员失败，未选择操作对象',U('Root/putongUserManageIndex'),1);
     	}    	
     }
     public function resetpasswordPuTongUser(){
@@ -110,31 +126,32 @@ class RootAction extends BaseAction
     	if($this->_post('PtUserRadioGroup')!=NULL){
     	    	$change_result=$User->where("uid=".$this->_post('PtUserRadioGroup'))->setField('userPassword','123456');
     	    		
-    	    	$this->success('密码已经重置为123456',U('Root/rootUserIndex'));
+    	    	$this->success('密码已经重置为123456',U('Root/putongUserManageIndex'),1);
     
 
     	}
     	else{
-    		$this->error('重置密码普通管理员失败，未选择操作对象',U('Root/rootUserIndex'));
+    		$this->error('重置密码普通管理员失败，未选择操作对象',U('Root/putongUserManageIndex'),1);
     	}    	
     }
     public function deleteStock(){
 
     	$StockInfo=D('StockInfo');
+    
     	if($this->_post('StockRadioGroup')!=NULL){
     		$delete_result=$StockInfo->deleteStock($this->_post('StockRadioGroup'));
     		//$UserAuth=D('UserAuth');
     		//$delete_user_auth_result=$UserAuth->deleteUserAuthByUid($this->_post('StockRadioGroup'));
     		
     		if($delete_result==false){
-    			$this->error('删除股票失败，数据库错误',U('Root/rootUserIndex'));
+    			$this->error('删除股票失败，数据库错误',U('Root/putongUserAuthIndex'),1);
     		}
     		else{
-    			$this->success('删除股票成功',U('Root/rootUserIndex'));
+    			$this->success('删除股票成功',U('Root/putongUserAuthIndex'),1);
     		}
     	}
     	else{
-    		$this->error('删除股票管理员失败，未选择操作对象',U('Root/rootUserIndex'));
+    		$this->error('删除股票管理员失败，未选择操作对象',U('Root/putongUserAuthIndex'),1);
     	}
     	
     	 
@@ -143,9 +160,9 @@ class RootAction extends BaseAction
     public function addStock(){
     	$new_stock_name=$this->_post('new_stock_name');
     	$StockInfo=D('StockInfo');
-    	$rs=$StockInfo->getStockInfo($new_stock_name);
+    	$rs=$StockInfo->getStockInfoByName($new_stock_name);
     	if($rs!=NULL){
-    		$this->error('股票已经存在，不需要添加',U('Root/rootUserIndex'));
+    		$this->error('股票已经存在，不需要添加',U('Root/putongUserAuthIndex'),1);
     	}
     	else{
     		$new_stock_unit=array(
@@ -156,23 +173,24 @@ class RootAction extends BaseAction
     		$add_result=$StockInfo->addStock2($new_stock_unit);
     		//dump($add_result);
     		if($add_result<=0){
-    			$this->error('添加失败，数据库错误',U('Root/rootUserIndex'));
+    			$this->error('添加失败，数据库错误',U('Root/putongUserAuthIndex'),1);
     		}
     		else{
-    			$this->success('新股票添加成功',U('Root/rootUserIndex'));
+    			$this->success('新股票添加成功',U('Root/putongUserAuthIndex'),1);
     		}
     	}
     }
     public function stockAuthChange($sid){
     	
     	$StockInfo=D('StockInfo');
-    	if($sid==-1){
+    	$stock_name;
+    	if($sid==-1){//从form传过来，没有预知sid，需要从radio group中获取
     		if($this->_post('StockRadioGroup')!=NULL){
     			$User = D('User');
     			$stock_auth_users = $User->selectPtUser();
     			$UserAuth=D('UserAuth');
     			$select_user_auth_result=$UserAuth->selectUserAuthBySid($this->_post('StockRadioGroup'));
-    		
+    			$stock_name=$StockInfo->getStockInfo($this->_post('StockRadioGroup'))['stockName'];
     			$pt_user_number=count($stock_auth_users,COUNT_NORMAL);
     			$hit_stock_user_number=count($select_user_auth_result,COUNT_NORMAL);
     			for($i=0;$i<$pt_user_number;$i++){
@@ -193,17 +211,18 @@ class RootAction extends BaseAction
     					$temp_array['hasauth']="";
     				}
     			}
-    			dump($stock_auth_users) ;
-    			dump($select_user_auth_result);
+/*     			dump($stock_auth_users) ;
+    			dump($select_user_auth_result); */
     			$stock_select_actionpara=$this->_post('StockRadioGroup');
     			$this->assign('stock_select',$stock_select_actionpara);
     			//dump($pt_user_number);
-    		
+    		    
     			$this->assign('stock_auth_users',$stock_auth_users);//传递给下一个action使用
+    			$this->assign('stock_name',$stock_name);
     			$this->display();
     		}
     		else{
-    			$this->error('股票权限修改失败，没有选中股票',U('Root/rootUserIndex'));
+    			$this->error('股票权限修改失败，没有选中股票',U('Root/putongUserAuthIndex'),1);
     		}  		
     	}
     	else{//不是从form调用，是其他的action调用
@@ -212,7 +231,7 @@ class RootAction extends BaseAction
     		$stock_auth_users = $User->selectPtUser();
     		$UserAuth=D('UserAuth');
     		$select_user_auth_result=$UserAuth->selectUserAuthBySid($sid);
-    		
+    		$stock_name=$StockInfo->getStockInfo($sid)['stockName'];
     		$pt_user_number=count($stock_auth_users,COUNT_NORMAL);
     		$hit_stock_user_number=count($select_user_auth_result,COUNT_NORMAL);
     		for($i=0;$i<$pt_user_number;$i++){
@@ -233,13 +252,14 @@ class RootAction extends BaseAction
     				$temp_array['hasauth']="";
     			}
     		}
-    		dump($stock_auth_users) ;
-    		dump($select_user_auth_result);
-    		$stock_select_actionpara=$this->_post('StockRadioGroup');
+/*     		dump($stock_auth_users) ;
+    		dump($select_user_auth_result); */
+    		$stock_select_actionpara=$sid;
     		$this->assign('stock_select',$stock_select_actionpara);//传递给下一个action使用
     		//$this->assign('stock_auth_status',$stock_auth_users);//传递给下一个action使用
     		//dump($pt_user_number);	
     		$this->assign('stock_auth_users',$stock_auth_users);
+    		$this->assign('stock_name',$stock_name);
     		$this->display();
     		
     	}
@@ -296,13 +316,11 @@ class RootAction extends BaseAction
     				}
     			}
     			if($disable_auth==true){//真的被撤销权限了
-    				dump($user_id."被撤销了");
     				//更新数据库
     				$UserAuth=D('UserAuth');
     				$delete_user_auth_result=$UserAuth->deleteUserAuthByUid($user_id);
     			}
     			else{
-    				dump($user_id."保存原来");
     			}
     		}
     		else{//原来是没有权限的，看看现在是否没有权限
@@ -313,7 +331,6 @@ class RootAction extends BaseAction
     				}
     			}
     			if($enable_auth==ture){//真的有权限了
-    				dump($user_id."有权限了");
     				//更新数据库
 
     				$new_auth_record=array(
@@ -323,13 +340,11 @@ class RootAction extends BaseAction
     				$add_user_auth_result=$UserAuth->addAuthRecord($new_auth_record);
     			}
     			else{
-    				dump($user_id."保存原来");
     			}
     		}
 
     	} 
-
-    	$this->success('股票权限修改成功，现在反悔',U('Root/stockAuthChange?sid='.$stock_selection));
+    	$this->success('股票权限修改成功，现在返回',U('Root/stockAuthChange?sid='.$stock_selection),1);
     }
 
 }

@@ -26,6 +26,14 @@ class StockInfoModel extends Model {
 		else
 			return $re;
 	}
+	public function getStockInfoByName($name)
+	{
+		$tmp = $this->where("stockName=\"".$name."\"")->select();
+		if ( ($tmp === false) || ($tmp === null) )
+			return $tmp;
+		else
+			return $tmp[0];
+	}
 	
 	/**
 	 * 设置股票暂停状态
