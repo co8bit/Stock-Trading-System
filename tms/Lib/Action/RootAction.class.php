@@ -190,7 +190,9 @@ class RootAction extends BaseAction
     			$stock_auth_users = $User->selectPtUser();
     			$UserAuth=D('UserAuth');
     			$select_user_auth_result=$UserAuth->selectUserAuthBySid($this->_post('StockRadioGroup'));
-    			$stock_name=$StockInfo->getStockInfo($this->_post('StockRadioGroup'))['stockName'];
+    			$re = null;
+    			$re	=		$StockInfo->getStockInfo($this->_post('StockRadioGroup'));
+    			$stock_name=$re['stockName'];
     			$pt_user_number=count($stock_auth_users,COUNT_NORMAL);
     			$hit_stock_user_number=count($select_user_auth_result,COUNT_NORMAL);
     			for($i=0;$i<$pt_user_number;$i++){
@@ -231,7 +233,9 @@ class RootAction extends BaseAction
     		$stock_auth_users = $User->selectPtUser();
     		$UserAuth=D('UserAuth');
     		$select_user_auth_result=$UserAuth->selectUserAuthBySid($sid);
-    		$stock_name=$StockInfo->getStockInfo($sid)['stockName'];
+    		$re = null;
+    		$re = $StockInfo->getStockInfo($sid);
+    		$stock_name=$re['stockName'];
     		$pt_user_number=count($stock_auth_users,COUNT_NORMAL);
     		$hit_stock_user_number=count($select_user_auth_result,COUNT_NORMAL);
     		for($i=0;$i<$pt_user_number;$i++){
