@@ -5,7 +5,8 @@ class StockInfoModel extends Model {
 		return $this->select();
 	}
 	public function deleteStock($sid){
-		$condition="sid=".$sid;
+		//$condition="sid=".$sid;
+		$condition["sid"]=$sid;//字符串选择删除应该这样写
 		$result = $this->where($condition)->delete();
 		return $result;
 	}

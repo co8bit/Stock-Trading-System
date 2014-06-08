@@ -313,9 +313,7 @@ function pt_user_manage_choose(button_name){
 
 									<a href="javascript:;" class="collapse"></a>
 
-									<a href="javascript:;" data-toggle="modal" class="config"></a>
-
-									<a href="<?php echo U('Root/putongUserManageIndex');?>" class="reload"></a>
+		
 
 									<a href="javascript:;" class="remove"></a>
 
@@ -340,19 +338,19 @@ function pt_user_manage_choose(button_name){
 
 									<div class="btn-group pull-right">
 
-										<button class="btn dropdown-toggle" data-toggle="dropdown">操作 <i class="icon-angle-down"></i>
+										<button style="color:#000; font-weight: bold;" class="btn dropdown-toggle" data-toggle="dropdown">操作 <i class="icon-angle-down"></i>
 
 										</button>
 
 										<ul class="dropdown-menu pull-right">
                                         
 
-											<li> <button  class="btn blue dropdown-toggle" type="submit" name="delete_user" onclick="pt_user_manage_choose(this.name)">删除</button></li>
+											<li> <button   style="color:#000; font-weight: bold;" class="btn blue dropdown-toggle" type="submit" name="delete_user" onclick="pt_user_manage_choose(this.name)">删除</button></li>
 
-											<li>  <button  class="btn blue dropdown-toggle" type="submit" name="refresh_user" onclick="pt_user_manage_choose(this.name)">刷新</button></li>
+											<li>  <button  style="color:#000; font-weight: bold;" class="btn blue dropdown-toggle" type="submit" name="refresh_user" onclick="pt_user_manage_choose(this.name)">刷新</button></li>
 
-											<li> <button  class="btn blue dropdown-toggle" type="submit" name="lock_user" onclick="pt_user_manage_choose(this.name)">锁定/解锁</button></li>
-											<li><button  class="btn blue dropdown-toggle" type="submit" name="resetpassword_user" onclick="pt_user_manage_choose(this.name)">密码重置</button></li>
+											<li> <button  style="color:#000; font-weight: bold;" class="btn blue dropdown-toggle" type="submit" name="lock_user" onclick="pt_user_manage_choose(this.name)">锁定/解锁</button></li>
+											<li><button  style="color:#000; font-weight: bold;" class="btn blue dropdown-toggle" type="submit" name="resetpassword_user" onclick="pt_user_manage_choose(this.name)">密码重置</button></li>
 										</ul>
 
 									</div>
@@ -366,14 +364,14 @@ function pt_user_manage_choose(button_name){
 										<tr>
 
 											<th style="width:8px;"><input type="hidden" class="group-checkable" /></th>
-											<th>管理员ID</th>
-											<th>管理员账号</th>
+											<th style="text-align:center;">管理员ID</th>
+											<th style="text-align:center;">管理员账号</th>
 
 											<!--  <th class="hidden-480">管理股票数量</th>  -->
 
-											<th class="hidden-480">添加日期（先不删去）</th>
+										
 
-											<th class="hidden-480">管理员状态</th>
+											<th style="text-align:center;" class="hidden-480">管理员状态</th>
 
 											<!-- <th ></th> -->
 
@@ -384,14 +382,14 @@ function pt_user_manage_choose(button_name){
 									<tbody>
 									<?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr class="odd gradeX">
 
-											<td><label><input type="radio" name="PtUserRadioGroup" value="<?php echo ($vo["uid"]); ?>" id="PtUserRadioGroup.<?php echo ($key); ?>"></label></td>
+											<td style="text-align:center;"><label><input type="radio" name="PtUserRadioGroup" value="<?php echo ($vo["uid"]); ?>" id="PtUserRadioGroup.<?php echo ($key); ?>"></label></td>
 
-											<td><input  type="hidden"><?php echo ($vo["uid"]); ?> </input></td>
-											<td><input  type="hidden"><?php echo ($vo["userName"]); ?> </input></td>
+											<td style="text-align:center;"><input  type="hidden"><?php echo ($vo["uid"]); ?> </input></td>
+											<td style="text-align:center;"><input  type="hidden"><?php echo ($vo["userName"]); ?> </input></td>
 
 											<!--   <td class="hidden-480">120</td>  -->
 
-											<td class="center hidden-480">12 Jan 2012</td>
+											
 
 											<td ><span class="<?php if(($vo["active_status"]) == "1"): ?>label label-success<?php else: ?>label label-warning<?php endif; ?>"><?php if(($vo["active_status"]) == "1"): ?>正常<?php else: ?>锁定<?php endif; ?></span></td>  <!--  双引号内加thinkphp标签可以将返回值以字符串付给class 属性-->
 

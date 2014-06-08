@@ -398,9 +398,6 @@
 
 									<a href="javascript:;" class="collapse"></a>
 
-									<a href="javascript:;" data-toggle="modal" class="config"></a>
-
-									<a href="<?php echo U('Root/rootUserIndex');?>" class="reload"></a>
 
 									<a href="javascript:;" class="remove"></a>
 

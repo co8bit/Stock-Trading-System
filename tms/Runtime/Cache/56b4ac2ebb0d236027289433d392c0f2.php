@@ -195,13 +195,13 @@ function stock_add_button(){
 
 					<i class="icon-th"></i>
 
-					<span class="title">设置业务管理员权限</span>
+					<span class="title">返回股票列表</span>
 
 					</a>
 
-				</li>
-                <li class="active">
-					<a href="">
+				</li>   
+             <!--   <li class="active">
+					<a href="<?php echo U('Root/putongUserAuthIndex');?>">
 
 					<i class="icon-th"></i>
 
@@ -209,7 +209,7 @@ function stock_add_button(){
 
 					</a>
 
-				</li>
+				</li>  -->
 
 
 
@@ -334,9 +334,7 @@ function stock_add_button(){
 
 									<a href="javascript:;" class="collapse"></a>
 
-									<a href="javascript:;" data-toggle="modal" class="config"></a>
 
-									<a href="" class="reload"></a>
 
 									<a href="javascript:;" class="remove"></a>
 
@@ -371,16 +369,16 @@ function stock_add_button(){
 										<tr>
 
 											<th style="width:8px;"><input type="hidden" class="group-checkable" /></th>
-											<th>管理员ID</th>
-											<th>管理员账号</th>
+											<th style="text-align:center;">管理员ID</th>
+											<th style="text-align:center;">管理员账号</th>
 
-											<th class="hidden-480">邮箱</th>
+											
 
-											<th class="hidden-480">管理股票数量</th>
+											
 
-											<th class="hidden-480">添加日期（先不删去吧，删去以后会变怪，下一版再改js）</th>
+											
 
-											<th class="hidden-480">管理员状态</th>
+											<th style="text-align:center;" class="hidden-480">管理员状态</th>
 
 											<!-- <th ></th> -->
 
@@ -391,17 +389,17 @@ function stock_add_button(){
 									<tbody>
 									<?php if(is_array($stock_auth_users)): $i = 0; $__LIST__ = $stock_auth_users;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$stock_auth_users_id): $mod = ($i % 2 );++$i;?><tr class="odd gradeX">
 
-											<td><label><input name="StockAuthCheckboxGroup[]" type="checkbox" id="StockAuthCheckboxGroup.<?php echo ($key); ?>"  value="<?php echo ($stock_auth_users_id["uid"]); ?>"  <?php echo ($stock_auth_users_id["hasauth"]); ?>></label></td>
+											<td style="text-align:center;"><label><input name="StockAuthCheckboxGroup[]" type="checkbox" id="StockAuthCheckboxGroup.<?php echo ($key); ?>"  value="<?php echo ($stock_auth_users_id["uid"]); ?>"  <?php echo ($stock_auth_users_id["hasauth"]); ?>></label></td>
 
-											<td><input  type="hidden"><?php echo ($stock_auth_users_id["uid"]); ?> </input></td>
-											<td><input  type="hidden"><?php echo ($stock_auth_users_id["userName"]); ?> </input></td>
-											<td class="hidden-480"><a href="mailto:shuxer@gmail.com">shuxer@gmail.com</a></td>
+											<td style="text-align:center;"><input  type="hidden"><?php echo ($stock_auth_users_id["uid"]); ?> </input></td>
+											<td style="text-align:center;"><input  type="hidden"><?php echo ($stock_auth_users_id["userName"]); ?> </input></td>
 
-											<td class="hidden-480">120</td>
 
-											<td class="center hidden-480">12 Jan 2012</td>
+											
 
-											<td ><span class="<?php if(($stock_auth_users_id["active_status"]) == "1"): ?>label label-success<?php else: ?>label label-warning<?php endif; ?>"><?php if(($stock_auth_users_id["active_status"]) == "1"): ?>正常<?php else: ?>锁定<?php endif; ?></span></td>  <!--  双引号内加thinkphp标签可以将返回值以字符串付给class 属性-->
+										
+
+											<td style="text-align:center;" ><span class="<?php if(($stock_auth_users_id["active_status"]) == "1"): ?>label label-success<?php else: ?>label label-warning<?php endif; ?>"><?php if(($stock_auth_users_id["active_status"]) == "1"): ?>正常<?php else: ?>锁定<?php endif; ?></span></td>  <!--  双引号内加thinkphp标签可以将返回值以字符串付给class 属性-->
 
 											</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 									</tbody>

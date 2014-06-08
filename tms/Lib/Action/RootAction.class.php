@@ -11,16 +11,6 @@ class RootAction extends BaseAction
 
     public function rootUserIndex(){
 
-    	
-/*     	$User = D('User');
-    
-    	$list = $User->selectPtUser();
-    	//$list = $User->selectPtUser();
-    	$this->assign('list',$list);
-    	//dump(getdate());
-    	$StockInfo=D('StockInfo');
-    	$stock_list=$StockInfo->selectStock();
-    	$this->assign('stock_list',$stock_list); */
     	$this->display();
     	
     }
@@ -137,7 +127,7 @@ class RootAction extends BaseAction
     public function deleteStock(){
 
     	$StockInfo=D('StockInfo');
-    
+       dump($this->_post('StockRadioGroup'));
     	if($this->_post('StockRadioGroup')!=NULL){
     		$delete_result=$StockInfo->deleteStock($this->_post('StockRadioGroup'));
     		//$UserAuth=D('UserAuth');
@@ -165,8 +155,24 @@ class RootAction extends BaseAction
     		$this->error('股票已经存在，不需要添加',U('Root/putongUserAuthIndex'),1);
     	}
     	else{
+    		$Model = new Model(); // 实例化一个model对象 没有对应任何数据表;
+    		$all_stock_descbysid=$Model->query("select * from a6_stock_info order by sid desc");
+    		//dump($all_stock_descbysid);
+    		$max_sid=$all_stock_descbysid[0]['sid'];//当前最大的sid
+    		$sid_number_str=substr($max_sid,2,5);//string 类型
+    		$sid_number=intval($sid_number_str);
+    		$sid_number++;
+    		$new_sid="";
+    		for($i=0;$i<5;$i++){
+    			$new_sid=$new_sid.($sid_number%10);
+    			$sid_number/=10;
+    		}
+    		$new_sid=$new_sid."TS";
+    		$new_sid_rev=strrev($new_sid);
+    		//dump($new_sid_rev);
+    		//dump($sid_number);
     		$new_stock_unit=array(
-    				"uid"=>null,
+    				"sid"=>$new_sid_rev,
     				"stockName"=>$new_stock_name,
     
     		);
@@ -182,9 +188,11 @@ class RootAction extends BaseAction
     }
     public function stockAuthChange($sid){
     	
-    	$StockInfo=D('StockInfo');
+    	$StockInfo=D('StockInfo');//sid 修改为ST00001这种格式，所以sid是字符串类型
     	$stock_name;
-    	if($sid==-1){//从form传过来，没有预知sid，需要从radio group中获取
+    	
+    	if(!strcmp($sid,"-1")){//从form传过来，没有预知sid，需要从radio group中获取
+    		
     		if($this->_post('StockRadioGroup')!=NULL){
     			$User = D('User');
     			$stock_auth_users = $User->selectPtUser();
