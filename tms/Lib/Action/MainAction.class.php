@@ -17,7 +17,10 @@ class MainAction extends BaseAction
     	if($is_root_user){
     		$this->redirect("Root/rootUserIndex");
     	}
-    	else{
+    	else
+    	{
+    		$stockList = D("UserAuth")->where(array("uid"=>$this->uid))->join(' a6_stock_info ON  a6_user_auth.sid = a6_stock_info.sid')->select();
+    		$this->assign("stockList",$stockList);
     		$this->display();
     	}
 
@@ -31,6 +34,14 @@ class MainAction extends BaseAction
     	
     	$this->assign("sid",$sid);
     	$this->assign("stockInfo",D("StockInfo")->getStockInfo($sid));
+    	
+    	
+    	
+    	//为了判断是不是有指令
+    	$buyInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>1))->order('price desc,createTime desc,num desc')->select();
+    	$sellInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>0))->order('price asc,createTime desc,num desc')->select();
+    	$this->assign("buyInstructList",$buyInstructList);
+    	$this->assign("sellInstructList",$sellInstructList);
     	$this->display();
     }
     
@@ -83,12 +94,12 @@ class MainAction extends BaseAction
     	$this->ajaxReturn($data);
     }
     
-    public function indexIframe()
-    {
-    	$stockList = D("UserAuth")->where(array("uid"=>$this->uid))->join(' a6_stock_info ON  a6_user_auth.sid = a6_stock_info.sid')->select();
-    	$this->assign("stockList",$stockList);
-    	$this->display();
-    }
+//     public function indexIframe()
+//     {
+//     	$stockList = D("UserAuth")->where(array("uid"=>$this->uid))->join(' a6_stock_info ON  a6_user_auth.sid = a6_stock_info.sid')->select();
+//     	$this->assign("stockList",$stockList);
+//     	$this->display();
+//     }
     
 //     public function manageIframe()
 //     {

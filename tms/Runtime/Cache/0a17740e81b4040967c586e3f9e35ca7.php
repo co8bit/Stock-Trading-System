@@ -133,8 +133,7 @@
 	
 	
 	
-	
-	<!-- DataTables CSS -->
+<!-- DataTables CSS -->
 <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.0/css/jquery.dataTables.css">
   
 <!-- jQuery -->
@@ -144,39 +143,79 @@
 <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
 
 <script>
-function timedCount()
- {
-	$.get("<?php echo U('Main/ajaxStockInfo');?>?sid=<?php echo ($sid); ?>",function(data,status){
-		data = data.split(",");//0:status 1:price 2:num
-		if (data[0] == "0")
-			$("#newStatus").html("暂停");
-		else
-			$("#newStatus").html("正常");
-		$("#newPrice").html(data[1]);
-		$("#newNum").html(data[2]);
-	  });
-	setTimeout("timedCount()",1000)
- }
- 
 $(document).ready( function () {
 	var buyTable = $('#table_buy').DataTable({
-		"ajax":'<?php echo U("Main/ajaxBuyInstructList");?>?sid=<?php echo ($sid); ?>'
+		"ajax":'<?php echo U("Main/ajaxBuyInstructList");?>?sid=<?php echo ($sid); ?>',
+		"language": {
+			"sProcessing":   "处理中...",
+		    "sLengthMenu":   "显示 _MENU_ 项结果",
+		    "sZeroRecords":  "没有匹配结果",
+		    "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+		    "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+		    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+		    "sInfoPostFix":  "",
+		    "sSearch":       "搜索:",
+		    "sUrl":          "",
+		    "sEmptyTable":     "表中数据为空",
+		    "sLoadingRecords": "载入中...",
+		    "sInfoThousands":  ",",
+		    "oPaginate": {
+		        "sFirst":    "首页",
+		        "sPrevious": "上页",
+		        "sNext":     "下页",
+		        "sLast":     "末页"
+		    },
+		    "oAria": {
+		        "sSortAscending":  ": 以升序排列此列",
+		        "sSortDescending": ": 以降序排列此列"
+		    }
+		}
 	});
     var sellTable = $('#table_sell').DataTable( {
-        "ajax":'<?php echo U("Main/ajaxSellInstructList");?>?sid=<?php echo ($sid); ?>'
+        "ajax":'<?php echo U("Main/ajaxSellInstructList");?>?sid=<?php echo ($sid); ?>',
+      	"language": {
+  			"sProcessing":   "处理中...",
+  		    "sLengthMenu":   "显示 _MENU_ 项结果",
+  		    "sZeroRecords":  "没有匹配结果",
+  		    "sInfo":         "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+  		    "sInfoEmpty":    "显示第 0 至 0 项结果，共 0 项",
+  		    "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+  		    "sInfoPostFix":  "",
+  		    "sSearch":       "搜索:",
+  		    "sUrl":          "",
+  		    "sEmptyTable":     "表中数据为空",
+  		    "sLoadingRecords": "载入中...",
+  		    "sInfoThousands":  ",",
+  		    "oPaginate": {
+  		        "sFirst":    "首页",
+  		        "sPrevious": "上页",
+  		        "sNext":     "下页",
+  		        "sLast":     "末页"
+  		    },
+  		    "oAria": {
+  		        "sSortAscending":  ": 以升序排列此列",
+  		        "sSortDescending": ": 以降序排列此列"
+  		    }
+  		}
     } );
     
-    setInterval( function () {
+    setInterval( function ()
+    {
 	    buyTable.ajax.reload();
 	    sellTable.ajax.reload();
+	    
+	    $.get("<?php echo U('Main/ajaxStockInfo');?>?sid=<?php echo ($sid); ?>",function(data,status){
+			data = data.split(",");//0:status 1:price 2:num
+			if (data[0] == "0")
+				$("#newStatus").html("暂停");
+			else
+				$("#newStatus").html("正常");
+			$("#newPrice").html(data[1]);
+			$("#newNum").html(data[2]);
+		  });
 	}, 1000 );
     
-    timedCount();//定时器开始
 } );
-
-
-
-
 </script>
 </head>
 
@@ -275,7 +314,7 @@ $(document).ready( function () {
 
 				<li class="active">
 
-					<a href="manage.html">
+					<a href="">
 
 					<i class="icon-th"></i>
 
@@ -372,26 +411,26 @@ $(document).ready( function () {
 								<div class="clearfix">
 									<div class="btn-group"></div>
 								</div>
-								<table class="table table-striped table-bordered table-hover" id="table_sell">
-					                <thead>
-						                <tr>
-						                	<th>序号</th>
-						                	<th>价格</th>
-						                	<th>数量</th>
-						                	<th>创建时间</th>
-						                </tr>
-					                </thead>
-					                <tbody>
-					                	<?php if($sellInstructList == NULL ): ?><b>没有卖指令</b>
-			   							<?php else: ?>
-						                	<?php if(is_array($sellInstructList)): $i = 0; $__LIST__ = $sellInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-										    		<td class="span1"><?php echo ($i); ?></td>
-										    		<td class="span4"><?php echo ($vo["price"]); ?></td>
-										    		<td class="span4"><?php echo ($vo["num"]); ?></td>
-										    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
-										    	</tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-					                </tbody>
-					            </table>
+								<?php if($sellInstructList == NULL ): ?><b>没有卖指令</b>
+			   					<?php else: ?>
+									<table class="table table-striped table-bordered table-hover" id="table_sell">
+						                <thead>
+							                <tr>
+							                	<th>序号</th>
+							                	<th>价格</th>
+							                	<th>数量</th>
+							                	<th>创建时间</th>
+							                </tr>
+						                </thead>
+						                <tbody>
+							                	<?php if(is_array($sellInstructList)): $i = 0; $__LIST__ = $sellInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+											    		<td class="span1"><?php echo ($i); ?></td>
+											    		<td class="span4"><?php echo ($vo["price"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["num"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
+											    	</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+						                </tbody>
+						            </table><?php endif; ?>
 							</div>
 
 						</div>
@@ -432,26 +471,26 @@ $(document).ready( function () {
 
 								</div>
 
-								<table class="table table-striped table-bordered table-hover" id="table_buy">
-					                <thead>
-						                <tr>
-						                	<th>序号</th>
-						                	<th>价格</th>
-						                	<th>数量</th>
-						                	<th>创建时间</th>
-						                </tr>
-					                </thead>
-					                <tbody>
-					                	<?php if($buyInstructList == NULL ): ?><b>没有买指令</b>
-			   							<?php else: ?>
-						                	<?php if(is_array($buyInstructList)): $i = 0; $__LIST__ = $buyInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-										    		<td class="span1"><?php echo ($i); ?></td>
-										    		<td class="span4"><?php echo ($vo["price"]); ?></td>
-										    		<td class="span4"><?php echo ($vo["num"]); ?></td>
-										    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
-										    	</tr><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-					                </tbody>
-					            </table>
+								<?php if($buyInstructList == NULL ): ?><b>没有买指令</b>
+			   					<?php else: ?>
+									<table class="table table-striped table-bordered table-hover" id="table_buy">
+						                <thead>
+							                <tr>
+							                	<th>序号</th>
+							                	<th>价格</th>
+							                	<th>数量</th>
+							                	<th>创建时间</th>
+							                </tr>
+						                </thead>
+						                <tbody>
+							                	<?php if(is_array($buyInstructList)): $i = 0; $__LIST__ = $buyInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
+											    		<td class="span1"><?php echo ($i); ?></td>
+											    		<td class="span4"><?php echo ($vo["price"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["num"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
+											    	</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+						                </tbody>
+						            </table><?php endif; ?>
 							</div>
 
 						</div>
