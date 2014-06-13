@@ -8,6 +8,10 @@ class MainAction extends BaseAction
     	parent::_initialize();
     }
     
+    
+    /**
+     * 首页（股票列表页面）
+     */
     public function index()
     {
     	$stockArray = D("UserAuth")->where(array("uid"=>$this->uid))->join(' a6_stock_info ON  a6_user_auth.sid = a6_stock_info.sid')->select();
@@ -27,6 +31,9 @@ class MainAction extends BaseAction
     }
 
 
+    /**
+     * 管理某个具体股票的页面
+     */
     public function manage()
     {
     	$sid		=		$this->_get("sid");
@@ -45,21 +52,34 @@ class MainAction extends BaseAction
     	$this->display();
     }
     
+    
+    /**
+     * ajax返回股票信息（实时价格和数量）
+     */
     public function ajaxStockInfo()
     {
     	$sid		=		$this->_get("sid");
     	empty($sid) && $this->error("非法操作",U("Main/index"));
     	 
-    	$re = D("StockInfo")->getStockInfo($sid);
-    	echo $re["status"] . "," . $re["price"] . "," . $re["num"];
+    	$re = D("StockInfo")->getStockInfo($sid);//得到股票实时信息
+    	echo $re["status"] . "," . $re["price"] . "," . $re["num"];//ajax输出
     }
+    
+    
+    /**
+     * ajax返回买指令队列
+     */
+    
     
     public function ajaxBuyInstructList()
     {
     	$sid		=		$this->_get("sid");
     	empty($sid) && $this->error("非法操作",U("Main/index"));
     	
+    	//从数据库中获得记录
     	$buyInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>1))->order('price desc,createTime desc,num desc')->select();
+    	
+    	//整理队形，为ajax输出做准备
     	$outputData 	=		null;
     	for ($i = 0; $i < count($buyInstructList); $i++)
     	{
@@ -69,26 +89,35 @@ class MainAction extends BaseAction
     		$outputData[$i][3] = $buyInstructList[$i]["createTime"];
     	}
 
+    	//ajax输出
     	$data["data"]		=		null;
     	$data["data"]		=		$outputData;
     	$this->ajaxReturn($data);
     }
+    
+    /**
+     * ajax返回卖指令队列
+     */
     
     public function ajaxSellInstructList()
     {
     	$sid		=		$this->_get("sid");
     	empty($sid) && $this->error("非法操作",U("Main/index"));
     	 
+    	//从数据库中获得记录
     	$sellInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>0))->order('price asc,createTime desc,num desc')->select();
+    	
+    	//整理队形，为ajax输出做准备
     	$outputData 	=		null;
     	for ($i = 0; $i < count($sellInstructList); $i++)
     	{
-    	$outputData[$i][0] = "$i";
-    	$outputData[$i][1] = $sellInstructList[$i]["price"];
-    	$outputData[$i][2] = $sellInstructList[$i]["num"];
-    	$outputData[$i][3] = $sellInstructList[$i]["createTime"];
+    		$outputData[$i][0] = "$i";
+    		$outputData[$i][1] = $sellInstructList[$i]["price"];
+    		$outputData[$i][2] = $sellInstructList[$i]["num"];
+    		$outputData[$i][3] = $sellInstructList[$i]["createTime"];
     	}
     
+    	//ajax输出
     	$data["data"]		=		null;
     	$data["data"]		=		$outputData;
     	$this->ajaxReturn($data);
@@ -184,7 +213,7 @@ class MainAction extends BaseAction
     	}
     }
     
-    /*
+    /**
      * 删除某个股票的操作
      */
     public function deleteStock()
