@@ -420,7 +420,8 @@ $(document).ready( function () {
 							                <tr>
 							                	<th>序号</th>
 							                	<th>价格</th>
-							                	<th>数量</th>
+							                	<th>总数量</th>
+							                	<th>剩余数量</th>
 							                	<th>创建时间</th>
 							                </tr>
 						                </thead>
@@ -429,7 +430,8 @@ $(document).ready( function () {
 											    	<tr>
 											    		<td class="span1">{$i}</td>
 											    		<td class="span4">{$vo.price}</td>
-											    		<td class="span4">{$vo.num}</td>
+											    		<td class="span4">{$vo.total}</td>
+											    		<td class="span4">{$vo.remain}</td>
 											    		<td class="span4">{$vo.createTime}</td>
 											    	</tr>
 										    	</volist>
@@ -483,7 +485,8 @@ $(document).ready( function () {
 							                <tr>
 							                	<th>序号</th>
 							                	<th>价格</th>
-							                	<th>数量</th>
+							                	<th>总数量</th>
+							                	<th>剩余数量</th>
 							                	<th>创建时间</th>
 							                </tr>
 						                </thead>
@@ -492,7 +495,8 @@ $(document).ready( function () {
 											    	<tr>
 											    		<td class="span1">{$i}</td>
 											    		<td class="span4">{$vo.price}</td>
-											    		<td class="span4">{$vo.num}</td>
+											    		<td class="span4">{$vo.total}</td>
+											    		<td class="span4">{$vo.remain}</td>
 											    		<td class="span4">{$vo.createTime}</td>
 											    	</tr>
 										    	</volist>

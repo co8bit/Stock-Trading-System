@@ -45,8 +45,9 @@ class MainAction extends BaseAction
     	
     	
     	//为了判断是不是有指令
-    	$buyInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>1))->order('price desc,createTime desc,num desc')->select();
-    	$sellInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>0))->order('price asc,createTime desc,num desc')->select();
+    	$buyInstructList = D("a4_instruct")->Table("a4_instruction")->where(array("a4_instruction.stock_id"=>$sid,"type"=>0))->order('price desc,time desc,total desc')->select();
+    	$sellInstructList = D("a4_instruct")->Table("a4_instruction")->where(array("a4_instruction.stock_id"=>$sid,"type"=>1))->order('price asc,time desc,total desc')->select();
+//     	dump($buyInstructList);
     	$this->assign("buyInstructList",$buyInstructList);
     	$this->assign("sellInstructList",$sellInstructList);
     	$this->display();
@@ -69,24 +70,23 @@ class MainAction extends BaseAction
     /**
      * ajax返回买指令队列
      */
-    
-    
     public function ajaxBuyInstructList()
     {
     	$sid		=		$this->_get("sid");
     	empty($sid) && $this->error("非法操作",U("Main/index"));
     	
     	//从数据库中获得记录
-    	$buyInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>1))->order('price desc,createTime desc,num desc')->select();
+    	$buyInstructList = D("a4_instruct")->Table("a4_instruction")->where(array("a4_instruction.stock_id"=>$sid,"type"=>0))->order('price desc,time desc,total desc')->select();
     	
     	//整理队形，为ajax输出做准备
     	$outputData 	=		null;
     	for ($i = 0; $i < count($buyInstructList); $i++)
     	{
-    		$outputData[$i][0] = "$i";
+    		$outputData[$i][0] = "$i" + 1;
     		$outputData[$i][1] = $buyInstructList[$i]["price"];
-    		$outputData[$i][2] = $buyInstructList[$i]["num"];
-    		$outputData[$i][3] = $buyInstructList[$i]["createTime"];
+    		$outputData[$i][2] = $buyInstructList[$i]["total"];
+    		$outputData[$i][3] = $buyInstructList[$i]["remain"];
+    		$outputData[$i][4] = date("Y-m-d H:i:s",$buyInstructList[$i]["time"]);
     	}
 
     	//ajax输出
@@ -105,16 +105,17 @@ class MainAction extends BaseAction
     	empty($sid) && $this->error("非法操作",U("Main/index"));
     	 
     	//从数据库中获得记录
-    	$sellInstructList = D("a4_instruct")->Table("a4_instruct")->where(array("a4_instruct.sid"=>$sid,"ty"=>0))->order('price asc,createTime desc,num desc')->select();
+    	$sellInstructList = D("a4_instruct")->Table("a4_instruction")->where(array("a4_instruction.stock_id"=>$sid,"type"=>1))->order('price asc,time desc,total desc')->select();
     	
     	//整理队形，为ajax输出做准备
     	$outputData 	=		null;
     	for ($i = 0; $i < count($sellInstructList); $i++)
     	{
-    		$outputData[$i][0] = "$i";
+    		$outputData[$i][0] = "$i" + 1;
     		$outputData[$i][1] = $sellInstructList[$i]["price"];
-    		$outputData[$i][2] = $sellInstructList[$i]["num"];
-    		$outputData[$i][3] = $sellInstructList[$i]["createTime"];
+    		$outputData[$i][2] = $sellInstructList[$i]["total"];
+    		$outputData[$i][3] = $sellInstructList[$i]["remain"];
+    		$outputData[$i][4] = date("Y-m-d H:i:s",$sellInstructList[$i]["time"]);
     	}
     
     	//ajax输出

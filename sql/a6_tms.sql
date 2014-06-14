@@ -77,25 +77,17 @@ insert a6_user_auth values(2,"ST00011");
 /*
  * 测试用
  */
-create table a4_instruct(
-	id bigint NOT NULL AUTO_INCREMENT,
-	sid varchar(10) NOT NULL,
-	ty int NOT NULL,
-	price double NOT NULL,
-	num int NOT NULL,
-	createTime datetime NOT NULL,
-	primary key(id)
-) CHARACTER SET utf8 COLLATE utf8_general_ci;
-insert a4_instruct values(null,"ST00001",1,12.3,45,"2014-05-29 20:30:23");
-insert a4_instruct values(null,"ST00001",0,3,90,"2014-05-29 22:32:23");
-insert a4_instruct values(null,"ST00001",1,15.3,415,"2014-05-29 20:30:23");
-insert a4_instruct values(null,"ST00001",0,36,930,"2014-05-29 12:32:23");
-insert a4_instruct values(null,"ST00001",1,123.3,445,"2014-05-11 20:30:23");
-insert a4_instruct values(null,"ST00001",0,32,940,"2014-05-29 09:32:23");
-insert a4_instruct values(null,"ST00001",1,112.3,435,"2014-05-08 20:30:23");
-insert a4_instruct values(null,"ST00001",0,33,902,"2014-05-29 07:32:23");
-insert a4_instruct values(null,"ST00001",1,122.3,435,"2014-05-06 20:30:23");
-insert a4_instruct values(null,"ST00001",0,33,960,"2014-05-29 13:32:23");
-insert a4_instruct values(null,"ST00001",1,142.3,445,"2014-05-14 20:30:23");
-insert a4_instruct values(null,"ST00001",0,35,940,"2014-05-29 15:32:23");
-insert a4_instruct values(null,"ST00002",1,12.5,23,"2014-05-29 20:40:23");
+CREATE TABLE IF NOT EXISTS `a4_instruction` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '指令Id',
+  `type` tinyint(1) NOT NULL COMMENT '指令类型：0购买 1出售',
+  `price` decimal(10,2) NOT NULL COMMENT '价格',
+  `total` int(10) unsigned NOT NULL COMMENT '总数量',
+  `remain` int(10) unsigned NOT NULL COMMENT '剩余数量',
+  `stock_id` varchar(10) NOT NULL,
+  `user_id` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '证券id',
+  `time` int(10) unsigned NOT NULL COMMENT '时间戳',
+  `account_id` int(10) unsigned NOT NULL COMMENT '资金账户id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='指令表' AUTO_INCREMENT=1 ;
+INSERT INTO `sts`.`a4_instruction` (`id`, `type`, `price`, `total`, `remain`, `stock_id`, `user_id`, `time`, `account_id`) VALUES (NULL, '1', '45', '80', '20', 'ST00001', '1', '546456', '1');
+INSERT INTO `sts`.`a4_instruction` (`id`, `type`, `price`, `total`, `remain`, `stock_id`, `user_id`, `time`, `account_id`) VALUES (NULL, '0', '48', '80', '30', 'ST00001', '1', '856456', '1');

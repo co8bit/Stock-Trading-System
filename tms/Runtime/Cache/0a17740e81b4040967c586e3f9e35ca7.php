@@ -418,7 +418,8 @@ $(document).ready( function () {
 							                <tr>
 							                	<th>序号</th>
 							                	<th>价格</th>
-							                	<th>数量</th>
+							                	<th>总数量</th>
+							                	<th>剩余数量</th>
 							                	<th>创建时间</th>
 							                </tr>
 						                </thead>
@@ -426,7 +427,8 @@ $(document).ready( function () {
 							                	<?php if(is_array($sellInstructList)): $i = 0; $__LIST__ = $sellInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
 											    		<td class="span1"><?php echo ($i); ?></td>
 											    		<td class="span4"><?php echo ($vo["price"]); ?></td>
-											    		<td class="span4"><?php echo ($vo["num"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["total"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["remain"]); ?></td>
 											    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
 											    	</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 						                </tbody>
@@ -478,7 +480,8 @@ $(document).ready( function () {
 							                <tr>
 							                	<th>序号</th>
 							                	<th>价格</th>
-							                	<th>数量</th>
+							                	<th>总数量</th>
+							                	<th>剩余数量</th>
 							                	<th>创建时间</th>
 							                </tr>
 						                </thead>
@@ -486,7 +489,8 @@ $(document).ready( function () {
 							                	<?php if(is_array($buyInstructList)): $i = 0; $__LIST__ = $buyInstructList;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
 											    		<td class="span1"><?php echo ($i); ?></td>
 											    		<td class="span4"><?php echo ($vo["price"]); ?></td>
-											    		<td class="span4"><?php echo ($vo["num"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["total"]); ?></td>
+											    		<td class="span4"><?php echo ($vo["remain"]); ?></td>
 											    		<td class="span4"><?php echo ($vo["createTime"]); ?></td>
 											    	</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 						                </tbody>
